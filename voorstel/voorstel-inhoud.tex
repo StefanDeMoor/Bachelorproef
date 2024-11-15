@@ -1,0 +1,141 @@
+%---------- Inleiding ---------------------------------------------------------
+
+% TODO: Is dit voorstel gebaseerd op een paper van Research Methods die je
+% vorig jaar hebt ingediend? Heb je daarbij eventueel samengewerkt met een
+% andere student?
+% Zo ja, haal dan de tekst hieronder uit commentaar en pas aan.
+
+%\paragraph{Opmerking}
+
+% Dit voorstel is gebaseerd op het onderzoeksvoorstel dat werd geschreven in het
+% kader van het vak Research Methods dat ik (vorig/dit) academiejaar heb
+% uitgewerkt (met medesturent VOORNAAM NAAM als mede-auteur).
+% 
+
+\section{Inleiding}%
+\label{sec:inleiding}
+
+Deze bachelorproef richt zich op de ontwikkeling van een mobiele applicatie voor SmartKit, het energiebeheersysteem van ATS. Dit systeem monitort en stuurt energiestromen zoals zonnepanelen, batterijen, laadpalen en verwarmingssystemen. Momenteel worden meldingen over systeemfouten, zoals storingen in de omvormer of een volledig opgeladen elektrisch voertuig, voornamelijk via e-mail verstuurd. Deze aanpak leidt echter tot een overvloed aan berichten, waardoor het voor beheerders moeilijk wordt om belangrijke meldingen snel op te merken en adequaat te reageren. Dit vertraagt de reactie op mogelijke systeemstoringen en verhoogt de kans op gemiste belangrijke informatie.
+
+Het doel van deze bachelorproef is om te onderzoeken hoe de communicatie van deze meldingen verbeterd kan worden door over te schakelen van e-mail naar mobiele notificaties. Door gebruik te maken van een mobiele applicatie kunnen meldingen directer, sneller en doelgerichter worden overgebracht, wat de efficiëntie van het systeembeheer ten goede komt. De centrale onderzoeksvraag die in dit onderzoek wordt behandeld, is: “Welke technologie is het meest geschikt voor de ontwikkeling van een mobiele applicatie die systeemmeldingen efficiënt en veilig verstuurt, en welke technologie kan op een kostenefficiënte manier integreren met het bestaande SmartKit-systeem?”
+
+Om deze vraag te beantwoorden, worden verschillende deelvragen geformuleerd die zich richten op specifieke aspecten van de oplossing. De eerste vraag onderzoekt de keuze tussen verschillende technologieën: “Wat zijn de voor- en nadelen van native apps, Progressive Web Apps (PWA) en cross-platform frameworks voor de ontwikkeling van de mobiele applicatie?” Deze vraag richt zich op het vergelijken van de mogelijkheden van deze technologieën, met nadruk op hun prestaties, gebruikservaring en ontwikkeltijd.
+
+Daarnaast wordt er gekeken naar de integratie van user management: “Hoe kan de mobiele applicatie op een veilige manier gebruikers beheren en toegang reguleren?” Aangezien de app gevoelige systeemdata verwerkt, is het essentieel dat alleen geautoriseerde gebruikers toegang hebben op basis van hun rol en verantwoordelijkheden binnen het systeem.
+
+Een andere belangrijke vraag is: “Welke technologie biedt de beste mogelijkheden voor het efficiënt versturen van mobiele notificaties binnen het SmartKit-systeem?” Hier wordt onderzocht welke systemen en technologieën het meest geschikt zijn om meldingen snel en effectief naar de juiste gebruikers te sturen.
+
+Tot slot wordt er gekeken naar de kosten- en schaalvoordelen van de technologieën: “Wat zijn de kosten- en schaalvoordelen van de verschillende technologieën voor de ontwikkeling van een mobiele app binnen een klein ontwikkelteam?” Deze vraag richt zich op de praktische haalbaarheid van de gekozen technologieën, met aandacht voor de beschikbare middelen en de capaciteit van het ontwikkelteam bij ATS.
+
+Het uiteindelijke resultaat van dit onderzoek zal een gedetailleerd rapport zijn, aangevuld met een Proof of Concept (PoC) die de gekozen oplossing in de praktijk demonstreert. Het PoC zal aantonen hoe de technologieën kunnen worden geïntegreerd om systeemmeldingen snel en efficiënt naar gebruikers te sturen. Dit zal de communicatie tussen ATS en haar klanten verbeteren, wat de klanttevredenheid verhoogt en bijdraagt aan een effectievere werking van het SmartKit-systeem.
+
+%---------- Stand van zaken ---------------------------------------------------
+
+\section{Literatuurstudie}%
+\label{sec:literatuurstudie}
+
+In de afgelopen jaren is mobiele app-ontwikkeling een essentieel onderdeel geworden van de digitale strategieën van bedrijven wereldwijd. Met de voortdurende vooruitgang in technologieën en gebruikersbehoeften zijn er verschillende benaderingen ontstaan voor het ontwikkelen van mobiele apps. De belangrijkste benaderingen zijn native apps, hybride apps, en progressieve webapps (PWA's). Elk van deze benaderingen heeft zijn eigen voordelen en beperkingen, afhankelijk van de context van gebruik, ontwikkelingskosten, prestatie-eisen en de doelmarkt.
+
+Native vs. Hybride Apps
+Een belangrijke discussie in mobiele app-ontwikkeling gaat over de keuze tussen native en hybride apps. Native apps zijn specifiek ontwikkeld voor een bepaald besturingssysteem, zoals Android of iOS, met gebruik van de native programmeertalen en tools van het platform, zoals Java/Kotlin voor Android en Swift/Objective-C voor iOS. Deze apps bieden doorgaans de beste prestaties en de meest geavanceerde toegang tot hardwarefunctionaliteiten zoals de camera, GPS, en sensoren. Ze zijn ook vaak de voorkeur bij toepassingen die hoge snelheid of intensieve grafische prestaties vereisen, zoals games of augmented reality-apps \autocite{Lau2022}.
+
+Aan de andere kant bieden hybride apps de voordelen van cross-platform compatibiliteit door gebruik te maken van webtechnologieën zoals HTML, CSS en JavaScript. Hybride apps worden vaak gepromoot vanwege hun lagere ontwikkelings- en onderhoudskosten, aangezien één codebase kan worden ingezet op meerdere platforms \autocite{Singh2024}. De prestaties van hybride apps kunnen echter variëren, en ze kunnen trager zijn dan native apps, vooral als ze complexe gebruikersinterfaces of zware grafische processen bevatten.
+
+De keuze tussen native en hybride apps hangt dus sterk af van de specifieke eisen van een project. Voor apps die optimale prestaties vereisen, zoals real-time toepassingen of applicaties die veel interactie met hardware nodig hebben, is de keuze voor native apps vaak gerechtvaardigd. Voor eenvoudigere apps die geen zware grafische verwerking vereisen, kunnen hybride apps een kosteneffectieve oplossing zijn \autocite{Microsoft}.
+
+Cross-Platform Apps
+Naast native en hybride apps, is de opkomst van cross-platform ontwikkeltools zoals React Native, Flutter, en Xamarin ook relevant. Deze tools stellen ontwikkelaars in staat om apps te schrijven die op meerdere platformen draaien, met een enkele codebase, maar met performance die dichter in de buurt komt van native apps dan traditionele hybride apps. React Native en Flutter zijn bijvoorbeeld in staat om een groot aantal native componenten direct aan te spreken, wat de performance aanzienlijk verbetert \autocite{Soegaard2024}.
+
+Deze cross-platform benaderingen hebben het voordeel van snellere ontwikkelingscycli en lagere kosten, vergelijkbaar met hybride apps, maar bieden betere prestaties en meer native-like ervaringen. Dit maakt ze een populaire keuze voor veel bedrijven die apps willen ontwikkelen die zowel op iOS als Android beschikbaar moeten zijn \autocite{Amazon}.
+
+Progressieve Web Apps (PWA’s)
+Een andere benadering die steeds meer aandacht krijgt, zijn progressieve web apps (PWA's). PWA's combineren de voordelen van mobiele apps en webapplicaties door gebruik te maken van moderne webtechnologieën om een app-achtige ervaring te bieden in een browser. Ze zijn platformonafhankelijk, kunnen offline functioneren, en bieden snelle laadtijden door caching \autocite{DavidFortunato2018}. In vergelijking met native en hybride apps kunnen PWA's sneller worden ontwikkeld en onderhouden, aangezien ze geen aparte versies voor verschillende besturingssystemen vereisen. Bovendien kunnen ze direct via de browser worden gedistribueerd, zonder tussenkomst van app stores \autocite{AndreasBioernHansen2018}.
+
+PWA’s hebben echter beperkingen op het gebied van hardware-integratie en gebruikersinteractie. Ze kunnen bijvoorbeeld minder diep integreren met de lokale opslag of de camera dan native apps. Desondanks zijn ze vooral aantrekkelijk voor bedrijven die snel nieuwe functies willen implementeren zonder zich zorgen te maken over app store goedkeuring of platform-specifieke eisen \autocite{Mozilla}.
+
+Beveiliging van Mobiele Apps
+De beveiliging van mobiele apps is een cruciaal onderwerp in de hedendaagse app-ontwikkeling. Met de groeiende hoeveelheid persoonlijke gegevens die via mobiele apps worden gedeeld, is het essentieel om de veiligheid van apps te waarborgen. Onderzoek heeft aangetoond dat mobiele apps vaak kwetsbaar zijn voor beveiligingslekken, zoals onveilige gegevensopslag, onversleutelde communicatie, en onvoldoende bescherming tegen malware \autocite{Zhu2014}. Het is van groot belang dat ontwikkelaars beveiligingsmaatregelen zoals encryptie, veilige communicatiekanalen, en sterke authenticatie implementeren om de risico’s te minimaliseren.
+
+Recent onderzoek heeft zich gericht op de verbetering van de beveiligingsmaatregelen in hybride en cross-platform apps, aangezien deze vaak meer kwetsbaar zijn dan native apps door de afhankelijkheid van externe frameworks en plug-ins \autocite{YongWang2015}. Bovendien wordt er steeds meer gebruikgemaakt van beveiligingstechnologieën zoals containerization en runtime protection om de app-beveiliging verder te versterken \autocite{PawelWeichbroth2020}.
+
+User Management en Notificaties
+Naast de technische aspecten van app-ontwikkeling zijn er ook belangrijke overwegingen met betrekking tot gebruikersbeheer en notificaties. Het effectief beheren van gebruikersaccounts, toegangspunten en data is essentieel voor de algehele functionaliteit en veiligheid van de app. Bovendien spelen notificaties een cruciale rol in het betrekken van gebruikers en het verbeteren van de gebruikerservaring. Push-notificaties, zowel voor native als hybride apps, kunnen worden gebruikt om gebruikers op de hoogte te houden van belangrijke gebeurtenissen, promoties, of updates \autocite{Android2024}. Het gebruik van gepersonaliseerde en contextuele notificaties kan echter leiden tot een beter gebruikersengagement en klanttevredenheid \autocite{Sarin}.
+
+%---------- Methodologie ------------------------------------------------------
+\section{Methodologie}
+\label{sec:methodologie}
+
+Dit onderzoek richt zich op de ontwikkeling van een mobiele applicatie voor het SmartKit-energiebeheersysteem van ATS. Het doel van de mobiele app is om systeemmeldingen, zoals storingen in de omvormer of een volledig opgeladen elektrisch voertuig, snel en efficiënt over te brengen via mobiele notificaties, in plaats van de huidige e-mailmeldingen. Dit zal de efficiëntie van het systeembeheer verbeteren en het gebruiksgemak voor eindgebruikers vergroten. Het onderzoek wordt in verschillende fasen uitgevoerd, waarbij telkens specifieke onderzoekstechnieken worden toegepast om de centrale vraag en deelvragen te beantwoorden. Hieronder wordt het stappenplan beschreven, inclusief de onderzoeksmethoden en geschatte tijdsduur voor elke fase.
+
+\begin{enumerate}[label=\textbf{Fase \arabic*:}, left=0pt, labelsep=1em, itemsep=1em, topsep=1em]
+	
+	\item \textbf{Literatuurstudie en Technologische Verkenning (1-2 weken)} \\
+	In de eerste fase wordt een literatuurstudie uitgevoerd om inzicht te krijgen in de verschillende technologieën die mogelijk geschikt zijn voor de ontwikkeling van de mobiele applicatie. Deze studie richt zich op de voor- en nadelen van native apps, Progressive Web Apps (PWA), en cross-platform frameworks. Daarnaast worden relevante publicaties over mobiele notificatiesystemen en gebruikersbeheer geanalyseerd, zodat de beste technologie kan worden geselecteerd voor het SmartKit-systeem.
+	
+	\textbf{Deliverable:} Rapport met een overzicht van de verschillende technologieën, hun voor- en nadelen, en een keuze voor de meest geschikte technologie.
+	
+	\item \textbf{Requirements-analyse (2-3 weken)} \\
+	De tweede fase bestaat uit het uitvoeren van interviews met verschillende belanghebbenden, zoals systeembeheerders, IT-specialisten en eindgebruikers van het SmartKit-systeem. Deze interviews helpen bij het verzamelen van gedetailleerde functionele en niet-functionele eisen voor de mobiele applicatie. De vragen richten zich op welke meldingen belangrijk zijn om te versturen, hoe gebruikersbeheer moet worden ingericht, en welke integratie met het bestaande SmartKit-systeem noodzakelijk is.
+	
+	\textbf{Deliverable:} Gedocumenteerde vereisten voor de mobiele applicatie, inclusief technische en functionele specificaties op basis van de interviews.
+	
+	\item \textbf{Vergelijkende Studie van Technologieën (1-2 weken)} \\
+	Op basis van de literatuurstudie en de interviews wordt een vergelijkende studie uitgevoerd om de drie geselecteerde technologieën (native apps, PWA, en cross-platform frameworks) te evalueren. Hierbij worden de prestaties, ontwikkeltijd, kosten, gebruikservaring en schaalbaarheid van elke technologie vergeleken. Deze fase helpt om de meest geschikte technologie te kiezen, rekening houdend met de behoeften van ATS en de beschikbare middelen voor het ontwikkelteam.
+	
+	\textbf{Deliverable:} Een gedetailleerde analyse van de drie technologieën, inclusief aanbevelingen voor de keuze van de technologie.
+	
+	\item \textbf{Ontwikkeling van de Proof of Concept (PoC) (4-5 weken)} \\
+	In de vierde fase wordt een Proof of Concept (PoC) ontwikkeld. De PoC is een werkend prototype van de mobiele applicatie, die minimaal de kernfunctionaliteit van meldingen via mobiele notificaties bevat. Het PoC wordt ontwikkeld in de gekozen technologie (native, PWA of cross-platform) en integreert met het SmartKit-systeem. De focus ligt op de testbaarheid van de belangrijkste functies, zoals het ontvangen van notificaties en de interactie met de backend van SmartKit.
+	
+	\textbf{Deliverable:} Werkend prototype van de mobiele applicatie, met de basisfunctionaliteit voor notificaties en integratie met SmartKit.
+	
+	\item \textbf{Testen van de PoC en Verzamelen van Feedback (2 weken)} \\
+	Na de ontwikkeling van de PoC wordt de applicatie getest door een selecte groep gebruikers, waaronder systeembeheerders en IT-specialisten van ATS. Het doel is om de werking van de notificaties, de gebruikersinterface en de integratie met het SmartKit-systeem te evalueren. Feedback wordt verzameld en geanalyseerd om de gebruikservaring te verbeteren en eventuele technische problemen te identificeren. Dit proces maakt het mogelijk om de app verder te optimaliseren.
+	
+	\textbf{Deliverable:} Testresultaten en verzamelde feedback, inclusief verbeterpunten voor de app.
+	
+	\item \textbf{Risico-analyse en Beveiligingsoverwegingen (1 week)} \\
+	In deze fase wordt een risico-analyse uitgevoerd om potentiële risico’s en technische uitdagingen te identificeren, met bijzondere aandacht voor beveiliging en prestaties. Aangezien de mobiele app gevoelige systeemdata verwerkt, is het belangrijk om te zorgen voor veilige communicatie en gebruikersauthenticatie. De risico-analyse zal ook mogelijke knelpunten bij de integratie met SmartKit in kaart brengen en strategieën voorstellen voor het mitigeren van deze risico’s.
+	
+	\textbf{Deliverable:} Risico-analyserapport met aanbevelingen voor het verminderen van technische en beveiligingsrisico’s.
+	
+	\item \textbf{Eindrapport en Conclusies (2 weken)} \\
+	De laatste fase van het onderzoek bestaat uit het schrijven van het eindrapport, waarin alle bevindingen, technische keuzes, testresultaten, en risico-analyse worden samengevat. Het rapport bevat een gedetailleerde beschrijving van het ontwikkelde PoC en de keuze van de technologieën, evenals een evaluatie van de effectiviteit van de oplossing. Het eindrapport bevat ook aanbevelingen voor de verdere implementatie van de mobiele applicatie binnen ATS.
+	
+	\textbf{Deliverable:} Eindrapport met een samenvatting van het onderzoek, technische keuzes, testresultaten en aanbevelingen voor de implementatie.
+	
+\end{enumerate}
+
+
+%---------- Verwachte resultaten ----------------------------------------------
+\section{Verwacht Resultaat en Conclusies}
+\label{sec:verwachte_resultaten}
+
+In dit gedeelte worden de verwachte resultaten van het onderzoek samengevat, gevolgd door de conclusies die uit deze resultaten getrokken kunnen worden.
+
+\subsection{Keuze van de Technologie}
+Het onderzoek zal naar verwachting uitmonden in de keuze voor een \textbf{cross-platform oplossing}, zoals React Native of Flutter. Deze technologieën bieden een optimale balans tussen ontwikkeltijd, kosten en prestaties voor een mobiele applicatie die zowel op iOS als Android moet draaien. Native apps zouden theoretisch betere prestaties bieden, maar de extra ontwikkeltijd en kosten maken dit minder praktisch voor een klein team. PWA's zullen wellicht als alternatief overwogen worden vanwege hun snelle ontwikkeltijd, maar zullen onvoldoende functionaliteit bieden voor diepgaande systeemintegratie.
+\\
+\textbf{Conclusie:} Cross-platform frameworks bieden de beste oplossing voor de benodigde snelheid, kostenbesparing en schaalbaarheid voor dit project.
+
+\subsection{Verbeterde Communicatie via Push-notificaties}
+Door de verschuiving van e-mailmeldingen naar \textbf{push-notificaties} binnen de mobiele applicatie wordt verwacht dat de snelheid en effectiviteit van de meldingen aanzienlijk zal verbeteren. Dit zal de responstijd op systeemstoringen verkorten, aangezien meldingen directer en meer gericht naar de juiste gebruikers worden gestuurd.
+\\
+\textbf{Conclusie:} De integratie van push-notificaties zal de efficiëntie van het systeembeheer verbeteren en de klanttevredenheid verhogen door snel en tijdig reageren op storingen.
+
+\subsection{Beveiliging en Gebruikersbeheer}
+Aangezien de app toegang biedt tot gevoelige systeeminformatie, zal er sterke aandacht zijn voor \textbf{gebruikersbeheer} en \textbf{beveiliging}. Het wordt verwacht dat technologieën zoals OAuth2 en JWT worden geïmplementeerd voor veilige authenticatie en autorisatie van gebruikers. Dit garandeert dat alleen geautoriseerde gebruikers toegang hebben tot systeemdata.
+\\
+\textbf{Conclusie:} Een robuust gebruikersbeheer en beveiligingsprotocol is essentieel voor het waarborgen van de integriteit en vertrouwelijkheid van het systeem, en zal ervoor zorgen dat enkel bevoegde personen toegang hebben.
+
+\subsection{Proof of Concept (PoC) en Testresultaten}
+De \textbf{Proof of Concept (PoC)} zal een werkend prototype van de applicatie opleveren, met minimaal de basisfunctionaliteit voor meldingen en integratie met het SmartKit-systeem. Verwacht wordt dat de PoC effectief zal demonstreren dat het systeem in staat is om push-notificaties te verzenden en snel te reageren op systeemfouten. De testresultaten zullen ook waardevolle feedback opleveren voor de verdere verfijning van de app.
+\\
+\textbf{Conclusie:} De PoC zal aantonen dat de geselecteerde technologie en notificatiesysteem daadwerkelijk effectief functioneren, en de feedback zal helpen bij het verder optimaliseren van de gebruikerservaring en technische prestaties.
+
+\subsection{Praktische Haalbaarheid en Verdere Implementatie}
+Het onderzoek verwacht dat de mobiele applicatie \textbf{technisch haalbaar} is en goed kan worden geïmplementeerd binnen het beschikbare tijd- en budgetkader van ATS. De keuze voor een cross-platform oplossing maakt het mogelijk om het project met beperkte middelen effectief uit te voeren. Het PoC zal dienen als fundament voor verdere implementatie en uitrol van de app in productie.
+\\
+\textbf{Conclusie:} De mobiele applicatie is een haalbare en kosteneffectieve oplossing voor ATS, met een goed potentieel voor verdere uitbreiding en implementatie, gebaseerd op de keuze van technologieën en de feedback uit de testfase.
+
+

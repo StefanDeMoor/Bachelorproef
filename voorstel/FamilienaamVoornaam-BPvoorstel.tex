@@ -1,0 +1,72 @@
+%==============================================================================
+% Sjabloon onderzoeksvoorstel bachproef
+%==============================================================================
+% Gebaseerd op document class `hogent-article'
+% zie <https://github.com/HoGentTIN/latex-hogent-article>
+
+% Voor een voorstel in het Engels: voeg de documentclass-optie [english] toe.
+% Let op: kan enkel na toestemming van de bachelorproefcoördinator!
+\documentclass{hogent-article}
+\usepackage{fontspec}
+\usepackage{enumitem}
+\setmainfont{Times New Roman}  % Ensure this font is installed
+
+% Invoegen bibliografiebestand
+\addbibresource{voorstel.bib}
+
+% Informatie over de opleiding, het vak en soort opdracht
+\studyprogramme{Professionele bachelor toegepaste informatica}
+\course{Bachelorproef}
+\assignmenttype{Onderzoeksvoorstel}
+% Voor een voorstel in het Engels, haal de volgende 3 regels uit commentaar
+% \studyprogramme{Bachelor of applied information technology}
+% \course{Bachelor thesis}
+% \assignmenttype{Research proposal}
+
+\academicyear{2022-2023} % TODO: pas het academiejaar aan
+
+% TODO: Werktitel
+\title{Onderzoek en concept ontwikkeling mobile app voor een Energy Management System.}
+
+% TODO: Studentnaam en emailadres invullen
+\author{Stefan De Moor}
+\email{stefan.demoor@student.hogent.be}
+
+% TODO: Medestudent
+% Gaat het om een bachelorproef in samenwerking met een student in een andere
+% opleiding? Geef dan de naam en emailadres hier
+% \author{Yasmine Alaoui (naam opleiding)}
+% \email{yasmine.alaoui@student.hogent.be}
+
+% TODO: Geef de co-promotor op
+\supervisor[Co-promotor]{Glenn Bettens (ATS Groep, \href{mailto:glenn.bettens@atsgroep.be}{glenn.bettens@atsgroep.be})}
+
+% Binnen welke specialisatierichting uit 3TI situeert dit onderzoek zich?
+% Kies uit deze lijst:
+%
+% - Mobile \& Enterprise development
+% - AI \& Data Engineering
+% - Functional \& Business Analysis
+% - System \& Network Administrator
+% - Mainframe Expert
+% - Als het onderzoek niet past binnen een van deze domeinen specifieer je deze
+%   zelf
+%
+\specialisation{Mobile \& Enterprise development}
+\keywords{Scheme, World Wide Web, $\lambda$-calculus}
+
+\begin{document}
+
+\begin{abstract}
+  Dit onderzoek richt zich op de ontwikkeling van een mobiele applicatie voor het energiebeheersysteem SmartKit van ATS, dat energiestromen zoals zonnepanelen, batterijen, laadpalen en verwarming monitort en aanstuurt. De uitdaging is om de communicatie van systeemmeldingen en foutmeldingen, die momenteel via e-mail plaatsvinden, te verbeteren door deze om te zetten naar mobiele notificaties die gebruikers sneller en efficiënter informeren. Het specifieke probleem dat in dit onderzoek wordt behandeld, is welke technologie het meest geschikt is voor de ontwikkeling van een kostenefficiënte en schaalbare mobiele app. Hierbij worden de voor- en nadelen van drie benaderingen onderzocht: native apps (zoals voor Android en iOS), Progressive Web Apps (PWA), en cross-platform frameworks (zoals React Native en Flutter). De hoofdonderzoeksvraag luidt: welke benadering is het meest geschikt voor de ontwikkeling van de mobiele app en hoe kan deze op een veilige manier user management en notificaties integreren? De voorgestelde methodologie omvat een literatuurstudie van de verschillende technologieën, gevolgd door de ontwikkeling van een Proof of Concept (POC) om de haalbaarheid van de gekozen oplossing te testen. De verwachte resultaten zijn een gedetailleerde vergelijking van de technische mogelijkheden van de verschillende benaderingen, evenals een werkend prototype van de app. Indien de resultaten de haalbaarheid en effectiviteit van de gekozen oplossing bevestigen, zal de conclusie zijn dat een mobiele app een aanzienlijke verbetering kan bieden in de communicatie en foutdiagnose, wat zal leiden tot hogere klanttevredenheid en een efficiënter gebruik van het systeem.
+\end{abstract}
+
+\tableofcontents
+
+% De hoofdtekst van het voorstel zit in een apart bestand, zodat het makkelijk
+% kan opgenomen worden in de bijlagen van de bachelorproef zelf.
+\input{voorstel-inhoud}
+
+\printbibliography[heading=bibintoc]
+
+\end{document}
