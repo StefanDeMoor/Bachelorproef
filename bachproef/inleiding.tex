@@ -5,41 +5,40 @@
 \chapter{\IfLanguageName{dutch}{Inleiding}{Introduction}}%
 \label{ch:inleiding}
 
-De inleiding moet de lezer net genoeg informatie verschaffen om het onderwerp te begrijpen en in te zien waarom de onderzoeksvraag de moeite waard is om te onderzoeken. In de inleiding ga je literatuurverwijzingen beperken, zodat de tekst vlot leesbaar blijft. Je kan de inleiding verder onderverdelen in secties als dit de tekst verduidelijkt. Zaken die aan bod kunnen komen in de inleiding~\autocite{Pollefliet2011}:
-
-\begin{itemize}
-  \item context, achtergrond
-  \item afbakenen van het onderwerp
-  \item verantwoording van het onderwerp, methodologie
-  \item probleemstelling
-  \item onderzoeksdoelstelling
-  \item onderzoeksvraag
-  \item \ldots
-\end{itemize}
+\noindent In een wereld waarin energiebeheer steeds belangrijker wordt, speelt efficiënte monitoring en besturing van energiestromen een cruciale rol. Het SmartKit-systeem van ATS is ontworpen om deze energiestromen, waaronder zonnepanelen, batterijen, laadpalen en verwarmingssystemen, te beheren. Momenteel worden systeemmeldingen, zoals storingen of operationele statusupdates, via e-mail gecommuniceerd. Dit leidt echter tot een overdaad aan berichten, waardoor kritieke meldingen over het hoofd kunnen worden gezien. Een effectievere oplossing is nodig om real-time meldingen beter te beheren en de respons op systeemstoringen te versnellen. \\
 
 \section{\IfLanguageName{dutch}{Probleemstelling}{Problem Statement}}%
 \label{sec:probleemstelling}
 
-Uit je probleemstelling moet duidelijk zijn dat je onderzoek een meerwaarde heeft voor een concrete doelgroep. De doelgroep moet goed gedefinieerd en afgelijnd zijn. Doelgroepen als ``bedrijven,'' ``KMO's'', systeembeheerders, enz.~zijn nog te vaag. Als je een lijstje kan maken van de personen/organisaties die een meerwaarde zullen vinden in deze bachelorproef (dit is eigenlijk je steekproefkader), dan is dat een indicatie dat de doelgroep goed gedefinieerd is. Dit kan een enkel bedrijf zijn of zelfs één persoon (je co-promotor/opdrachtgever).
+\noindent Dit onderzoek richt zich op de ontwikkeling van een mobiele applicatie voor SmartKit die meldingen efficiënter en veiliger naar de juiste gebruikers stuurt via mobiele notificaties. Een dergelijke applicatie kan de beheerders van het systeem in staat stellen sneller en gerichter te reageren, wat de algehele efficiëntie en betrouwbaarheid van het systeem verbetert. \\
 
 \section{\IfLanguageName{dutch}{Onderzoeksvraag}{Research question}}%
 \label{sec:onderzoeksvraag}
 
-Wees zo concreet mogelijk bij het formuleren van je onderzoeksvraag. Een onderzoeksvraag is trouwens iets waar nog niemand op dit moment een antwoord heeft (voor zover je kan nagaan). Het opzoeken van bestaande informatie (bv. ``welke tools bestaan er voor deze toepassing?'') is dus geen onderzoeksvraag. Je kan de onderzoeksvraag verder specifiëren in deelvragen. Bv.~als je onderzoek gaat over performantiemetingen, dan 
+\noindent De centrale onderzoeksvraag luidt:
+
+\begin{quote}
+    \textit{Welke technologie is het meest geschikt voor de ontwikkeling van een mobiele applicatie die systeemmeldingen efficiënt en veilig verstuurt, en welke technologie kan op een kostenefficiënte manier integreren met het bestaande SmartKit-systeem?}
+\end{quote}
+
+\noindent Om deze onderzoeksvraag te beantwoorden, worden de volgende deelvragen onderzocht:
+
+\begin{itemize}
+    \item Wat zijn de voor- en nadelen van native apps, Progressive Web Apps (PWA) en cross-platform frameworks voor de ontwikkeling van de mobiele applicatie? Hierbij wordt gekeken naar prestaties, gebruikservaring en ontwikkeltijd.
+    \item Hoe kan de mobiele applicatie op een veilige manier gebruikers beheren en toegang reguleren? Dit omvat authenticatie en autorisatie om gevoelige systeemdata te beschermen.
+    \item Welke technologie biedt de beste mogelijkheden voor het efficiënt versturen van mobiele notificaties binnen het SmartKit-systeem? Hier wordt onderzocht welke pushnotificatietechnologieën geschikt zijn voor real-time communicatie.
+    \item Wat zijn de kosten- en schaalvoordelen van de verschillende technologieën voor de ontwikkeling van een mobiele app binnen een klein ontwikkelteam? Dit aspect richt zich op de praktische haalbaarheid en implementatiekosten.
+\end{itemize}
 
 \section{\IfLanguageName{dutch}{Onderzoeksdoelstelling}{Research objective}}%
 \label{sec:onderzoeksdoelstelling}
 
-Wat is het beoogde resultaat van je bachelorproef? Wat zijn de criteria voor succes? Beschrijf die zo concreet mogelijk. Gaat het bv.\ om een proof-of-concept, een prototype, een verslag met aanbevelingen, een vergelijkende studie, enz.
+\noindent De doelstelling van dit onderzoek is om een technologisch onderbouwde keuze te maken voor de ontwikkeling van een mobiele applicatie die de communicatie van SmartKit-meldingen optimaliseert. Dit zal resulteren in een gedetailleerd onderzoeksrapport en een Proof of Concept (PoC) die de geselecteerde technologieën in de praktijk demonstreert. De uitkomsten van dit onderzoek zullen bijdragen aan een verbeterde werking van het SmartKit-systeem, een efficiëntere afhandeling van systeemmeldingen en een verhoogde klanttevredenheid. \\
 
 \section{\IfLanguageName{dutch}{Opzet van deze bachelorproef}{Structure of this bachelor thesis}}%
 \label{sec:opzet-bachelorproef}
 
-% Het is gebruikelijk aan het einde van de inleiding een overzicht te
-% geven van de opbouw van de rest van de tekst. Deze sectie bevat al een aanzet
-% die je kan aanvullen/aanpassen in functie van je eigen tekst.
-
-De rest van deze bachelorproef is als volgt opgebouwd:
+\noindent De rest van deze bachelorproef is als volgt opgebouwd:
 
 In Hoofdstuk~\ref{ch:stand-van-zaken} wordt een overzicht gegeven van de stand van zaken binnen het onderzoeksdomein, op basis van een literatuurstudie.
 
@@ -48,3 +47,4 @@ In Hoofdstuk~\ref{ch:methodologie} wordt de methodologie toegelicht en worden de
 % TODO: Vul hier aan voor je eigen hoofstukken, één of twee zinnen per hoofdstuk
 
 In Hoofdstuk~\ref{ch:conclusie}, tenslotte, wordt de conclusie gegeven en een antwoord geformuleerd op de onderzoeksvragen. Daarbij wordt ook een aanzet gegeven voor toekomstig onderzoek binnen dit domein.
+
