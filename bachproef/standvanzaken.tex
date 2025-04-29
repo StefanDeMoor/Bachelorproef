@@ -18,34 +18,17 @@ Daarnaast blijft de veilige opslag van wachtwoorden een essentieel onderwerp bin
 
 De gebruikersinterface, en met name de loginpagina, wordt in de literatuur besproken als een kritiek punt waar gebruiksvriendelijkheid en veiligheid in balans moeten zijn. Beperkingen op het aantal mislukte inlogpogingen en het gebruik van tweefactorauthenticatie (2FA) worden genoemd als effectieve maatregelen om aanvallen zoals credential stuffing tegen te gaan \autocite{Chinnasamy2025, Jurisons2024}. Ook wordt het belang benadrukt van een goede gebruikerservaring, zodat beveiligingsmaatregelen geen hinder vormen voor legitieme gebruikers.\\
 
-Een ander belangrijk onderwerp binnen mobiele applicatieontwikkeling is het gebruik van pushnotificaties. Deze notificaties worden vaak gebruikt om gebruikers snel op de hoogte te brengen van belangrijke gebeurtenissen, bijvoorbeeld wanneer een app gekoppeld is aan systemen zoals zonnepanelen of slimme meters. In zulke situaties kunnen pushberichten gebruikers waarschuwen voor overproductie van energie of andere relevante veranderingen.
+Een ander belangrijk onderwerp binnen mobiele applicatieontwikkeling is het gebruik van pushnotificaties. Deze notificaties worden vaak gebruikt om gebruikers snel op de hoogte te brengen van belangrijke gebeurtenissen, bijvoorbeeld wanneer een app gekoppeld is aan systemen zoals zonnepanelen of slimme meters. In zulke situaties kunnen pushnotificaties gebruikers waarschuwen voor overproductie van energie of andere relevante veranderingen.
 
-Een technologie die vaak genoemd wordt voor het versturen van pushnotificaties is Firebase Cloud Messaging (FCM) van Google. Dit systeem maakt het mogelijk om berichten te sturen naar mobiele apparaten op basis van bepaalde acties, tijdstippen of gegevens. Firebase ondersteunt zowel Android als iOS en kan gekoppeld worden aan backenddiensten om meldingen automatisch te versturen. In de literatuur wordt benadrukt dat het belangrijk is om notificaties veilig en betrouwbaar te verzenden. Dit vraagt onder andere om het goed registreren van apparaten en het beheren van wie welke meldingen ontvangt.
+Bij het implementeren van pushnotificaties is een belangrijk technisch aspect het correct registreren en beheren van devicetokens. Voor iOS-apparaten kan worden gebruikgemaakt van Apple Push Notification Service (APNs), terwijl Android-apparaten kunnen gebruikmaken van Firebase Cloud Messaging (FCM). Bij het opstarten van een mobiele applicatie dient elk apparaat een uniek push-token aan te vragen. In het geval van Firebase gebeurt dit door per gebruiker een token te registreren dat aan zijn account wordt gekoppeld. Dit stelt de backend in staat om gerichte notificaties te versturen op basis van gebruikersacties of systeemgebeurtenissen.
 
-\begin{listing}
-  \begin{minted}{python}
-    import pandas as pd
-    import seaborn as sns
+Een aandachtspunt hierbij is de levensduur van deze tokens. Pushnotificatietokens kunnen vervallen, bijvoorbeeld bij herinstallatie van de app, verandering van instellingen of het verlopen van de sessie. Daarom is het van belang dat de applicatie in staat is om deze tokens automatisch te verversen en opnieuw te registreren bij de backend. In dit kader wordt vaak ook het automatisch vernieuwen van JWT-tokens op de achtergrond toegepast, zodat gebruikerssessies geldig blijven zonder handmatige interventie. Dit verhoogt niet alleen de veiligheid, maar ook de gebruikerservaring. Verder is het aan te raden om bij registratie het apparaattype (iOS of Android) mee te geven, zodat het systeem het juiste distributiekanaal voor notificaties gebruikt.
 
-    penguins = sns.load_dataset('penguins')
-    sns.relplot(data=penguins, x="flipper_length_mm", y="bill_length_mm", hue="species")
-  \end{minted}
-  \caption[Voorbeeld codefragment]{Voorbeeld van het invoegen van een codefragment.}
-\end{listing}
+In de praktijk zullen gebruikers echter niet continu actief zijn binnen de mobiele applicatie. Dit betekent dat het geldig blijven van het pushnotificatietoken essentieel is: wanneer een token is vervallen of ongeldig is geworden, ontvangt de gebruiker geen meldingen meer – zelfs niet bij kritieke gebeurtenissen zoals het overschot aan opgewekte zonne-energie. In applicaties die afhankelijk zijn van realtime communicatie over belangrijke systeemstatussen, kan dit leiden tot functionele beperkingen of gemiste waarschuwingen.
+
+Daarnaast moet bijzondere aandacht worden besteed aan de beveiliging van pushnotificatietokens en de inhoud van de berichten zelf. Pushnotificaties moeten voldoende gegevens bevatten om na ontvangst direct te kunnen navigeren naar de juiste pagina binnen de app, specifiek afgestemd op de juiste gebruiker en situatie. Dit betekent dat de notificatie bijvoorbeeld een gebruikers-ID of andere contextuele informatie moet bevatten. Omdat het hier vaak gaat om gevoelige gegevens, zoals energieverbruik of systeemstoringen, is het essentieel dat deze informatie op een veilige manier wordt verwerkt en verzonden, bijvoorbeeld via versleuteling of in combinatie met server-side verificatie bij het openen van de app via een notificatie. Een fout in dit proces kan leiden tot datalekken of ongeautoriseerde toegang tot persoonlijke informatie.
+
+Wanneer een token vervalt, kan dit doorgaans worden opgevangen door de pushservice zelf, die een foutcode retourneert wanneer een bericht niet kan worden afgeleverd. Op basis hiervan kan het systeem het oude token verwijderen en bij de eerstvolgende gebruikersinteractie een nieuw token opvragen. Het implementeren van deze logica is essentieel om te waarborgen dat pushnotificaties betrouwbaar blijven functioneren over de gehele levenscyclus van de applicatie.
 
 
-\begin{table}
-  \centering
-  \begin{tabular}{lcr}
-    \toprule
-    \textbf{Kolom 1} & \textbf{Kolom 2} & \textbf{Kolom 3} \\
-    $\alpha$         & $\beta$          & $\gamma$         \\
-    \midrule
-    A                & 10.230           & a                \\
-    B                & 45.678           & b                \\
-    C                & 99.987           & c                \\
-    \bottomrule
-  \end{tabular}
-  \caption[Voorbeeld tabel]{\label{tab:example}Voorbeeld van een tabel.}
-\end{table}
 
