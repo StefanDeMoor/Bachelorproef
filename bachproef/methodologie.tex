@@ -40,6 +40,11 @@ In de tweede fase werd de basisfunctionaliteit voor gebruikersauthenticatie geï
 
 De derde fase richtte zich op het beveiligen van de gebruikersauthenticatie door middel van JWT (JSON Web Token) en hashing-technieken. Dit was een cruciale stap om ongeautoriseerde toegang te voorkomen en gebruikersgegevens veilig op te slaan. JWT werd geïmplementeerd als mechanisme voor sessiebeheer, waarbij gebruikers een token ontvangen na succesvolle authenticatie. Dit token wordt vervolgens gebruikt om toegang te krijgen tot beveiligde endpoints. Daarnaast werden wachtwoorden gehasht opgeslagen in de database, zodat ze niet in platte tekst beschikbaar zijn. De beveiligingsmechanismen werden uitvoerig getest om mogelijke zwakke plekken te identificeren en te verbeteren. Ook in deze fase werd een combinatie van literatuurstudie en experimentele ontwikkeling toegepast, waarbij best practices op het gebied van authenticatie en beveiliging werden onderzocht en geïmplementeerd. Het resultaat was een veilige en betrouwbare loginomgeving die voldoet aan moderne beveiligingsstandaarden.
 
+\section{Pushnotificaties}
+In deze fase werd de mogelijkheid toegevoegd om pushnotificaties te ontvangen en te verzenden binnen de mobiele applicatie. Het doel hiervan is om gebruikers automatisch op de hoogte te brengen van belangrijke updates, bijvoorbeeld wanneer hun systeem een overschot aan zonne-energie detecteert. Om dit te realiseren, werd de applicatie zodanig ingesteld dat elk toestel een unieke code (token) ontvangt zodra de app wordt geopend. Deze token wordt vervolgens gekoppeld aan de juiste gebruiker, zodat meldingen persoonlijk en correct afgeleverd kunnen worden.
+Daarnaast werd er gezorgd dat de app, wanneer er op een melding wordt geklikt, automatisch naar de juiste pagina navigeert. Dit is belangrijk omdat gebruikers zo direct toegang krijgen tot de relevante informatie zonder handmatig door de applicatie te moeten zoeken.
+Tot slot werd de algemene werking getest op verschillende toestellen en werd gecontroleerd of de notificaties ook aankwamen wanneer de app niet actief was. Deze aanpak zorgde ervoor dat de meldingen betrouwbaar en gebruiksvriendelijk functioneren binnen de volledige gebruikerservaring.
+
 \section{Vervolg...}
 
 
