@@ -12,6 +12,22 @@ De ontwikkeling van mobiele applicaties heeft de afgelopen jaren aanzienlijke vo
 
 Een van de recente ontwikkelingen op het gebied van cross-platform mobiele ontwikkeling is de opkomst van .NET MAUI (Multi-platform App UI). Dit framework bouwt voort op eerdere technologieën zoals Xamarin en integreert nauw met het bredere .NET-ecosysteem, waaronder ASP.NET Core en Azure-diensten \autocite{Klesman2023}. In de literatuur wordt .NET MAUI vaak geprezen vanwege de verbeterde prestaties, moderne gebruikersinterface en de mogelijkheid om met één codebase apps te ontwikkelen voor meerdere platformen. Wanneer vergeleken met andere frameworks zoals React Native en Flutter, worden vooral de diepe integratie met Microsoft-technologieën en de schaalbaarheid als voordelen genoemd \autocite{Kuppan2024}.
 
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\textwidth]{comparison1.png}
+    \caption[Integratie]{Geschiktheid}
+\end{figure}
+
+Een belangrijke motivatie voor de keuze van .NET MAUI als ontwikkeltechnologie binnen dit project is de bestaande technologie-stack van de opdrachtgever, waarin reeds gebruik wordt gemaakt van het .NET-ecosysteem. Door .NET MAUI te verkiezen boven andere populaire cross-platform frameworks zoals React Native of Flutter, wordt er bewust gekozen voor technologische continuïteit en hergebruik van bestaande kennis en infrastructuur. Dit verlaagt niet alleen de leercurve voor ontwikkelaars, maar maakt ook integratie met bestaande backendcomponenten efficiënter, bijvoorbeeld via ASP.NET Core of Azure-integraties. Voor een organisatie die reeds vertrouwd is met C# en andere Microsoft-technologieën, vormt .NET MAUI daardoor een toekomstbestendige keuze die zowel technische als organisatorische voordelen oplevert \autocite{Longe2025}.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\textwidth]{comparison2.png}
+    \caption[Vergelijking]{Vergelijking}
+\end{figure}
+
+Bovendien blijkt uit recente vergelijkende analyses tussen .NET MAUI, Flutter en React Native dat .NET MAUI bij uitstek geschikt is voor enterprise-omgevingen waarin stabiliteit, veiligheid en systeemintegratie centraal staan. Waar Flutter uitblinkt in UI-rijke toepassingen met vloeiende animaties, en React Native gewaardeerd wordt om zijn grote community en brede platformondersteuning, onderscheidt .NET MAUI zich door zijn native UI-componenten, nauwe integratie met Microsoft-tools zoals Visual Studio en Azure, en ondersteuning voor zowel desktop- als mobiele platformen. Deze eigenschappen maken het de meest geschikte keuze voor organisaties die vertrouwen op Microsoft-technologieën en op zoek zijn naar een eenduidige, schaalbare en onderhoudbare oplossing voor cross-platform applicatieontwikkeling \autocite{Gajjam2025}.
+
 Op het gebied van beveiliging signaleren onderzoekers een toenemende voorkeur voor moderne authenticatiemethoden. JSON Web Tokens (JWT) worden vaak genoemd als efficiënte en schaalbare manier om authenticatie en autorisatie te beheren in mobiele applicaties \autocite{Gao2023}. Deze tokens bevatten versleutelde gebruikersinformatie en stellen applicaties in staat om zonder server-side sessiebeheer toch een hoge mate van veiligheid te realiseren. JWT wordt gezien als een robuuste oplossing, mits correct geïmplementeerd, bijvoorbeeld met versleuteling, tijdsbeperking en verzending via beveiligde verbindingen.
 
 Daarnaast blijft de veilige opslag van wachtwoorden een essentieel onderwerp binnen mobiele app-beveiliging. De toepassing van cryptografische hashing-algoritmes zoals bcrypt en PBKDF2 wordt breed aanbevolen vanwege hun weerstand tegen brute-force aanvallen \autocite{Gupta2022}. Het gebruik van salting als aanvullende techniek maakt dictionary-aanvallen moeilijker uitvoerbaar en is volgens de literatuur een noodzakelijke maatregel bij moderne wachtwoordbeveiliging \autocite{Arias2025}. Tegelijkertijd wordt in studies gewezen op de risico’s van verouderde algoritmes zoals MD5 en SHA1, die ondanks hun bekendheid vaak onvoldoende bescherming bieden \autocite{ReesCarter2024}.
