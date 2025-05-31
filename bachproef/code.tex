@@ -1,34 +1,507 @@
 %%=============================================================================
 %% Code
 %%=============================================================================
-
+\lstset{
+    breaklines=true,
+    numbers=left,
+    frame=single,
+    backgroundcolor=\color{gray!10}
+}
 
 \section{Loginpagina}
 
-In onderstaand codefragment wordt de implementatie van de loginpagina in .NET MAUI getoond. De code maakt gebruik van MVVM, data binding en eenvoudige validatie.
+In dit onderdeel wordt de loginpagina van de applicatie besproken. De implementatie is opgedeeld in drie delen: de gebruikersinterface (XAML), de logica in de ViewModel (C\#) en de clientservice voor authenticatieverzoeken (C\#). Deze structuur volgt het MVVM-patroon.
 
-\begin{figure}[H]
-	\centering
-	\begin{minted}[fontsize=\small, bgcolor=gray!10, linenos]{csharp}
-		public partial class LoginPage : ContentPage
-		{
-			public LoginPage()
-			{
-				InitializeComponent();
-			}
-			
-			private async void OnLoginClicked(object sender, EventArgs e)
-			{
-				if (username.Text == "admin" && password.Text == "1234")
-				{
-					await Navigation.PushAsync(new HomePage());
-				}
-				else
-				{
-					await DisplayAlert("Fout", "Ongeldige inloggegevens", "OK");
-				}
-			}
-		}
-	\end{minted}
-	\caption{Voorbeeldimplementatie van een eenvoudige loginpagina in .NET MAUI}
-\end{figure}
+\subsection{XAML – Gebruikersinterface}
+
+\begin{lstlisting}[language=XML, caption=Gebruikersinterface van de loginpagina, label=lst:login-xaml]
+    <?xml version="1.0" encoding="utf-8" ?>
+    <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewmodel="clr-namespace:ATS.ViewModels"
+    x:DataType="viewmodel:LoginPageViewModel"
+    x:Class="ATS.Views.LoginPage"
+    Title="Login"
+    Shell.NavBarIsVisible="False">
+    
+    <Grid>
+    <Grid.RowDefinitions>
+    <RowDefinition Height="220" />
+    <RowDefinition Height="*" />
+    <RowDefinition Height="50" />
+    </Grid.RowDefinitions>
+    
+    <Path Data="m0.30001,0l449,0l0,128.48327c-122.5,64.30167 -332.5,65.89076 -449,7.2429c0,-45.25313 0,-90.47304 0,-135.72617z" Fill="CornflowerBlue" />
+    
+    <StackLayout>
+    <Border BackgroundColor="LightGray" HeightRequest="60" WidthRequest="60" Margin="0, 100, 0, 0" HorizontalOptions="Center">
+    <Border.StrokeShape>
+    <RoundRectangle CornerRadius="30"/>
+    </Border.StrokeShape>
+    <Image Source="user" Aspect="AspectFill" />
+    </Border>
+    </StackLayout>
+    
+    <Grid Grid.Row="1" Margin="20, 20, 20, 0" RowSpacing="5">
+    <Grid.RowDefinitions>
+    <RowDefinition Height="*" />
+    <RowDefinition Height="50" />
+    <RowDefinition Height="50" />
+    <RowDefinition Height="Auto" />
+    <RowDefinition Height="40" />
+    <RowDefinition Height="40" />
+    <RowDefinition Height="*" />
+    </Grid.RowDefinitions>
+    
+    <Label Grid.Row="1" Text="Welcome!" HorizontalOptions="Center" FontSize="Title" FontAttributes="Bold"/>
+    <Label Grid.Row="2" Text="Sign in to continue" HorizontalOptions="Center" FontSize="Subtitle"/>
+    
+    <StackLayout Grid.Row="3">
+    <Border Stroke="CornflowerBlue">
+    <Border.StrokeShape><RoundRectangle CornerRadius="30"/></Border.StrokeShape>
+    <Grid ColumnDefinitions="Auto,*">
+    <Border BackgroundColor="LightGray" HeightRequest="40" Margin="5">
+    <Border.StrokeShape><RoundRectangle CornerRadius="30"/></Border.StrokeShape>
+    <Image Source="user" WidthRequest="40" HeightRequest="40"/>
+    </Border>
+    <Entry Text="{Binding LoginModel.Email}" Placeholder="Username" FontAttributes="Bold"/>
+    </Grid>
+    </Border>
+    
+    <Border Stroke="CornflowerBlue" Margin="0, 15, 0, 0">
+    <Border.StrokeShape><RoundRectangle CornerRadius="30"/></Border.StrokeShape>
+    <Grid ColumnDefinitions="Auto,*">
+    <Border BackgroundColor="LightGray" HeightRequest="40" Margin="5">
+    <Border.StrokeShape><RoundRectangle CornerRadius="30"/></Border.StrokeShape>
+    <Image Source="lock" WidthRequest="40" HeightRequest="40"/>
+    </Border>
+    <Entry Text="{Binding LoginModel.Password}" Placeholder="Password" FontAttributes="Bold"/>
+    </Grid>
+    </Border>
+    
+    <Label Text="{Binding ErrorMessage}" TextColor="Red" IsVisible="{Binding IsErrorVisible}" />
+    
+    <Grid ColumnDefinitions="Auto,*,Auto" Margin="0, 10, 0, 0">
+    <CheckBox Grid.Column="0" IsChecked="False"/>
+    <Label Grid.Column="1" Text="Remember me"/>
+    <Label Grid.Column="2" Text="Forgot Password?" TextColor="CornflowerBlue" FontAttributes="Bold" HorizontalOptions="End"/>
+    </Grid>
+    
+    <Button Text="SIGN IN" BackgroundColor="CornflowerBlue" TextColor="White" FontAttributes="Bold" CornerRadius="30" WidthRequest="200" Margin="0, 15, 0, 0" Command="{Binding LoginCommand}"/>
+    </StackLayout>
+    </Grid>
+    </Grid>
+    </ContentPage>
+\end{lstlisting}
+
+\subsection{ViewModel – Logica en Binding}
+
+\begin{lstlisting}[language=C, caption=ViewModel voor loginpagina, label=lst:login-viewmodel]
+    using CommunityToolkit.Mvvm.ComponentModel;
+    using CommunityToolkit.Mvvm.Input;
+    using ATS.Models;
+    using ATS.Views;
+    using ATS.Services;
+    using ATS.Services.Users;
+    
+    namespace ATS.ViewModels
+    {
+        public partial class LoginPageViewModel : ObservableObject
+        {
+            public required RegisterModel RegisterModel { get; set; }
+            public required LoginModel LoginModel { get; set; }
+            
+            private readonly ClientService clientService;
+            private readonly UserService userService;
+            
+            public LoginPageViewModel(ClientService clientService, UserService userService)
+            {
+                this.clientService = clientService;
+                this.userService = userService;
+                RegisterModel = new RegisterModel();
+                LoginModel = new LoginModel();
+                IsAuthenticated = false;
+            }
+            
+            [RelayCommand]
+            private async Task Register()
+            {
+                await clientService.Register(RegisterModel);
+            }
+            
+            [RelayCommand]
+            private async Task Login()
+            {
+                bool loginSuccess = await clientService.Login(LoginModel);
+                
+                if (loginSuccess)
+                {
+                    var user = await userService.GetCurrentUserAsync();
+                    if (user != null && !string.IsNullOrEmpty(user.UserName))
+                    {
+                        await userService.SetCurrentUserAsync(user);
+                        IsAuthenticated = true;
+                        UserName = user.UserName;
+                        await Shell.Current.GoToAsync($"//{nameof(HomePage)}");
+                    }
+                    else
+                    {
+                        ShowError("Invalid login credentials.");
+                    }
+                }
+                else
+                {
+                    ShowError("Login failed. Please try again.");
+                }
+            }
+            
+            private void ShowError(string message)
+            {
+                IsErrorVisible = true;
+                ErrorMessage = message;
+            }
+            
+            [RelayCommand]
+            private async Task Logout()
+            {
+                userService.Logout();
+                IsAuthenticated = false;
+                UserName = string.Empty;
+                await Shell.Current.GoToAsync("..");
+            }
+            
+            public string? UserName { get; set; }
+            public string? ErrorMessage { get; set; }
+            public bool IsErrorVisible { get; set; }
+            public bool IsAuthenticated { get; set; }
+        }
+    }
+\end{lstlisting}
+
+\subsection{ClientService – Verwerken van inlogverzoeken}
+
+\begin{lstlisting}[language=C, caption=Authenticatie via de ClientService, label=lst:login-clientservice]
+    using ATS.Models;
+    using System.Net.Http.Json;
+    using System.Text.Json;
+    using Shared.DTOs;
+    using Plugin.Firebase.CloudMessaging;
+    using ATS.Services.Users;
+    
+    namespace ATS.Services
+    {
+        public class ClientService
+        {
+            private readonly IHttpClientFactory _httpClientFactory;
+            private readonly UserService _userService;
+            
+            public ClientService(IHttpClientFactory httpClientFactory, UserService userService)
+            {
+                _httpClientFactory = httpClientFactory;
+                _userService = userService;
+            }
+            
+            public async Task Register(RegisterModel model)
+            {
+                var httpClient = _httpClientFactory.CreateClient("custom-httpclient");
+                
+                var requestDto = new RegisterRequestDto
+                {
+                    Email = model.Email,
+                    Password = model.Password
+                };
+                
+                var result = await httpClient.PostAsJsonAsync("/api/auth/register", requestDto);
+                result.EnsureSuccessStatusCode(); 
+            }
+            
+            public async Task<bool> Login(LoginModel model)
+            {
+                var httpClient = _httpClientFactory.CreateClient("custom-httpclient");
+                var requestDto = new LoginRequestDto
+                {
+                    Email = model.Email,
+                    Password = model.Password
+                };
+                
+                var result = await httpClient.PostAsJsonAsync("/api/auth/login", requestDto);
+                
+                if (result.IsSuccessStatusCode)
+                {
+                    var response = await result.Content.ReadFromJsonAsync<LoginResponseDto>();
+                    
+                    if (response != null && !string.IsNullOrEmpty(response.UserName))
+                    {
+                        var serialized = JsonSerializer.Serialize(response);
+                        await SecureStorage.Default.SetAsync("Authentication", serialized);
+                        
+                        var token = await CrossFirebaseCloudMessaging.Current.GetTokenAsync();
+                        if (!string.IsNullOrEmpty(token))
+                        {
+                            await _userService.AddFcmTokenAsync(token);
+                        }
+                        
+                        return true;
+                    }
+                }
+                
+                return false;
+            }
+        }
+    }
+\end{lstlisting}
+
+\section{Pushnotificatie}
+
+In deze sectie wordt de implementatie besproken van pushnotificaties binnen de applicatie. Deze is opgebouwd uit drie hoofdcomponenten: de ViewModel waarin notificaties verzonden worden, de Android-specifieke configuratie in de hoofdactiviteit, en de algemene configuratie van Firebase in het opstartbestand van de applicatie.
+
+\subsection{HomePageViewModel – Verwerken en verzenden van pushnotificaties}
+
+\begin{lstlisting}[language=C, caption=Versturen van pushnotificaties in HomePageViewModel, label=lst:pushnotification-viewmodel]
+    using ATS.Views;
+    using CommunityToolkit.Mvvm.ComponentModel;
+    using CommunityToolkit.Mvvm.Input;
+    using ATS.Services.Users;
+    using Plugin.Firebase.CloudMessaging;
+    using FirebaseAdmin;
+    using FirebaseAdmin.Messaging;
+    using Google.Apis.Auth.OAuth2;
+    
+    namespace ATS.ViewModels
+    {
+        public partial class HomePageViewModel : ObservableObject
+        {
+            private readonly UserService _userService;
+            private string? _userRole;
+            private string? _fcmToken;
+            
+            public HomePageViewModel(UserService userService)
+            {
+                _userService = userService;
+                Task.Run(async () => await InitializeUserRole());
+            }
+            
+            public bool IsButtonVisible => !string.IsNullOrEmpty(_userRole) && _userRole != "Guest";
+            
+            [RelayCommand]
+            private async Task GoToData()
+            {
+                await Shell.Current.GoToAsync($"//{nameof(DataPage)}");
+            }
+            
+            [RelayCommand]
+            private async Task SendPushNotification()
+            {
+                var app = FirebaseApp.Create(new AppOptions
+                {
+                    Credential = await GetCredential()
+                });
+                
+                FirebaseMessaging messaging = FirebaseMessaging.GetMessaging(app);
+                var tokens = await _userService.GetFcmTokensAsync();
+                
+                foreach (var token in tokens)
+                {
+                    var message = new Message()
+                    {
+                        Token = token,
+                        Notification = new Notification { Title = "Hello world!", Body = "It's a message for Android with MAUI" },
+                        Data = new Dictionary<string, string> { { "greating", "hello" } },
+                        Android = new AndroidConfig { Priority = Priority.Normal },
+                        Apns = new ApnsConfig { Headers = new Dictionary<string, string> { { "apns-priority", "5" } } }
+                    };
+                    
+                    try
+                    {
+                        var response = await messaging.SendAsync(message);
+                        Console.WriteLine($"Sent to {token}: {response}");
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($"Error sending to {token}: {ex.Message}");
+                    }
+                }
+                
+                await Shell.Current.DisplayAlert("Push", $"Sent to {tokens.Count} device(s)", "OK");
+            }
+            
+            private async Task<GoogleCredential> GetCredential()
+            {
+                var path = await FileSystem.OpenAppPackageFileAsync("firebase-adminsdk.json");
+                return GoogleCredential.FromStream(path);
+            }
+            
+            private async Task InitializeUserRole()
+            {
+                _userRole = await _userService.GetUserRoleAsync();
+                OnPropertyChanged(nameof(IsButtonVisible));
+            }
+        }
+    }
+\end{lstlisting}
+
+\subsection{Android – Aanmaken van notificatiekanaal}
+
+\begin{lstlisting}[language=C, caption=Android configuratie in MainActivity, label=lst:pushnotification-android]
+    using Android.App;
+    using Android.Content;
+    using Android.Content.PM;
+    using Android.OS;
+    using Plugin.Firebase.CloudMessaging;
+    
+    namespace ATS
+    {
+        [Activity(Theme = "@style/Maui.SplashTheme", MainLauncher = true, LaunchMode = LaunchMode.SingleTop,
+        ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation |
+        ConfigChanges.UiMode | ConfigChanges.ScreenLayout | ConfigChanges.SmallestScreenSize |
+        ConfigChanges.Density)]
+        public class MainActivity : MauiAppCompatActivity
+        {
+            protected override void OnCreate(Bundle? savedInstanceState)
+            {
+                base.OnCreate(savedInstanceState);
+                Firebase.FirebaseApp.InitializeApp(this);
+                HandleIntent(Intent);
+                CreateNotificationChannelIfNeeded();
+            }
+            
+            protected override void OnNewIntent(Intent? intent)
+            {
+                base.OnNewIntent(intent);
+                HandleIntent(intent);
+            }
+            
+            private static void HandleIntent(Intent? intent)
+            {
+                FirebaseCloudMessagingImplementation.OnNewIntent(intent);
+            }
+            
+            private void CreateNotificationChannelIfNeeded()
+            {
+                if (Build.VERSION.SdkInt >= BuildVersionCodes.O)
+                {
+                    CreateNotificationChannel();
+                }
+            }
+            
+            private void CreateNotificationChannel()
+            {
+                var channelId = $"{PackageName}.general";
+                var notificationManager = (NotificationManager)GetSystemService(NotificationService);
+                var channel = new NotificationChannel(channelId, "General", NotificationImportance.Default);
+                notificationManager.CreateNotificationChannel(channel);
+                FirebaseCloudMessagingImplementation.ChannelId = channelId;
+            }
+        }
+    }
+\end{lstlisting}
+
+\subsection{MauiProgram.cs – Firebase configuratie en dependency injection}
+
+\begin{lstlisting}[language=C, caption=Firebase initialisatie en dependency injection, label=lst:pushnotification-mauiprogram]
+    using ATS.Services;
+    using ATS.Services.Users;
+    using ATS.ViewModels;
+    using ATS.Views;
+    using Microsoft.Extensions.Logging;
+    using Microsoft.Maui.LifecycleEvents;
+    using Plugin.Firebase.CloudMessaging;
+    
+    #if IOS
+    using Plugin.Firebase.Core.Platforms.iOS;
+    #elif ANDROID
+    using Plugin.Firebase.Core.Platforms.Android;
+    #endif
+    
+    namespace ATS
+    {
+        public static class MauiProgram
+        {
+            public static MauiApp CreateMauiApp()
+            {
+                var builder = MauiApp.CreateBuilder();
+                builder
+                .UseMauiApp<App>()
+                .ConfigureFonts(fonts =>
+                {
+                    fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
+                    fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
+                });
+                
+                builder.RegisterFirebaseServices();
+                
+                builder.Services.AddHttpClient("custom-httpclient")
+                .ConfigurePrimaryHttpMessageHandler(() =>
+                {
+                    return new HttpClientHandler
+                    {
+                        ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => true
+                    };
+                })
+                .ConfigureHttpClient(httpClient =>
+                {
+                    var baseAddress = DeviceInfo.Platform == DevicePlatform.Android
+                    ? "https://10.0.2.2:7194"
+                    : "https://localhost:7194";
+                    
+                    httpClient.BaseAddress = new Uri(baseAddress);
+                });
+                
+                #if DEBUG
+                builder.Logging.AddDebug();
+                
+                builder.Services.AddSingleton<ClientService>();
+                builder.Services.AddSingleton<UserService>();
+                builder.Services.AddSingleton<LoginPage>();
+                builder.Services.AddSingleton<HomePage>();
+                builder.Services.AddSingleton<DataPage>();
+                
+                builder.Services.AddSingleton<LoginPageViewModel>();
+                builder.Services.AddSingleton<HomePageViewModel>();
+                builder.Services.AddSingleton<DataPageViewModel>();
+                #endif
+                
+                var app = builder.Build();
+                
+                CrossFirebaseCloudMessaging.Current.NotificationTapped += async (sender, e) =>
+                {
+                    Console.WriteLine("Notification clicked!");
+                    
+                    try
+                    {
+                        await MainThread.InvokeOnMainThreadAsync(async () =>
+                        {
+                            await Shell.Current.GoToAsync($"//{nameof(DataPage)}");
+                        });
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($"Navigation failed: {ex.Message}");
+                    }
+                };
+                
+                return app;
+            }
+            
+            private static MauiAppBuilder RegisterFirebaseServices(this MauiAppBuilder builder)
+            {
+                builder.ConfigureLifecycleEvents(events =>
+                {
+                    #if IOS
+                    events.AddiOS(iOS => iOS.WillFinishLaunching((_, __) =>
+                    {
+                        CrossFirebase.Initialize();
+                        FirebaseCloudMessagingImplementation.Initialize();
+                        return false;
+                    }));
+                    #elif ANDROID
+                    events.AddAndroid(android => android.OnCreate((activity, _) =>
+                    CrossFirebase.Initialize(activity)));
+                    #endif
+                });
+                
+                return builder;
+            }
+        }
+    }
+\end{lstlisting}

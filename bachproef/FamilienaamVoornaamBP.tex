@@ -18,11 +18,11 @@
 
 %% For source code highlighting, requires pygments to be installed
 %% Compile with the -shell-escape flag!
-%% \usepackage[chapter]{minted}
+\usepackage[chapter]{minted}
 %% If you compile with the make_thesis.{bat,sh} script, use the following
 %% import instead:
-\usepackage[chapter,outputdir=../output]{minted}
-\usemintedstyle{solarized-light}
+%%\usepackage[chapter,outputdir=../output]{minted}
+%%\usemintedstyle{solarized-light}
 
 %% Formatting for minted environments.
 \setminted{%
@@ -32,7 +32,8 @@
     linenos,
     tabsize=4
 }
-
+\usepackage{listings}
+\usepackage{xcolor}
 %% Ensure the list of listings is in the table of contents
 \renewcommand\listoflistingscaption{%
     \IfLanguageName{dutch}{Lijst van codefragmenten}{List of listings}

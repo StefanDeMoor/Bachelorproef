@@ -2,94 +2,143 @@
 \label{ch:stand-van-zaken}
 
 \section{Inleiding}
-Dit hoofdstuk biedt een overzicht van de huidige stand van zaken rondom mobiele applicatieontwikkeling, met een focus op beveiliging, platformkeuze en cross-platform technologieën. Het doel is om de technologische context van dit project helder te krijgen en zo een gefundeerde keuze te maken voor .NET MAUI als ontwikkelplatform. Door recente ontwikkelingen en relevante literatuur te bespreken, leggen we een basis voor de daaropvolgende onderzoeksvragen en ontwerpkeuzes.
+In dit hoofdstuk wordt een overzicht gegeven van de huidige stand van zaken rondom mobiele applicatieontwikkeling. De focus ligt daarbij op beveiliging, de keuze van platformen en cross-platform technologieën. Het doel is om de technologische context van dit project helder in kaart te brengen, zodat er een weloverwogen keuze kan worden gemaakt voor het meest geschikte ontwikkelplatform. Door recente ontwikkelingen en relevante literatuur te bespreken, leggen we een stevige basis voor de onderzoeksvragen en ontwerpbeslissingen die hierop volgen.
 
 \section{Vergelijking van mobiele ontwikkelstrategieën}
-
-Mobiele applicaties kunnen op verschillende manieren worden ontwikkeld, elk met hun eigen voor- en nadelen. De drie meest gangbare strategieën zijn: native apps, Progressive Web Apps (PWA's) en cross-platform frameworks. Deze sectie bespreekt elk van deze benaderingen afzonderlijk en vergelijkt ze vervolgens op het gebied van prestaties, gebruikservaring en ontwikkeltijd.
+Mobiele applicaties kunnen op verschillende manieren ontwikkeld worden, elk met hun eigen voor- en nadelen. De drie meest gebruikte strategieën zijn native apps, Progressive Web Apps (PWA’s) en cross-platform frameworks. In deze sectie worden deze benaderingen apart besproken, waarna ze vergeleken worden op punten als prestaties, gebruikservaring en ontwikkeltijd.
 
 \subsection{Native apps}
-Native apps worden specifiek ontwikkeld voor een bepaald platform, zoals Android of iOS, met gebruik van platformgebonden programmeertalen en tools zoals Kotlin of Java voor Android, en Swift of Objective-C voor iOS. Volgens \textcite{Bharadwaj2022} biedt deze benadering de beste prestaties en diepste integratie met het besturingssysteem, inclusief toegang tot hardwarecomponenten en native UI-elementen.
+Native apps worden specifiek ontwikkeld voor één platform, zoals Android of iOS. Dit gebeurt met platformgebonden programmeertalen en tools, bijvoorbeeld Kotlin of Java voor Android, en Swift of Objective-C voor iOS. Volgens \textcite{Gillis} levert deze aanpak de beste prestaties en de diepste integratie met het besturingssysteem, inclusief directe toegang tot hardware en native UI-elementen.
 
-Een belangrijk voordeel van native ontwikkeling is de optimale gebruikerservaring. De app voelt aan als een natuurlijk onderdeel van het besturingssysteem, wat zorgt voor snellere laadtijden, vloeiendere animaties en consistente interactiepatronen \autocite{Pereira2024}. Daarentegen vereist deze strategie vaak twee aparte ontwikkelteams, wat leidt tot hogere ontwikkelkosten en langere time-to-market.
-
-\textbf{Conclusie:} Native apps zijn ideaal wanneer maximale prestaties en diepe integratie vereist zijn, maar brengen hogere kosten en complexiteit met zich mee.
+Een belangrijk voordeel is dat native apps een optimale gebruikerservaring bieden: ze voelen als een natuurlijk onderdeel van het platform, laden snel, tonen vloeiende animaties en volgen consistente interactiepatronen \textcite{Gillis}. Daartegenover staat dat deze aanpak vaak aparte ontwikkelteams per platform vereist, wat kan leiden tot hogere kosten en een langere time-to-market.
 
 \subsection{Progressive Web Apps (PWA)}
-Progressive Web Apps (PWA’s) zijn webapplicaties die functioneren als native apps door gebruik te maken van moderne webtechnologieën zoals HTML5, CSS3 en JavaScript in combinatie met service workers en manifest-bestanden \autocite{Osmani2023}. Ze worden uitgevoerd in een browseromgeving, maar kunnen offline functioneren, pushnotificaties sturen en op het startscherm van een toestel worden geïnstalleerd.
+Progressive Web Apps zijn webapplicaties die zich gedragen als native apps. Ze maken gebruik van moderne webtechnologieën zoals HTML5, CSS3 en JavaScript, in combinatie met service workers en manifest-bestanden. PWA’s draaien in een browseromgeving, maar kunnen ook offline functioneren, pushnotificaties versturen en op het startscherm van een toestel worden geplaatst.
 
-De belangrijkste voordelen van PWA’s zijn hun platformonafhankelijkheid en lage ontwikkelkosten. Eén codebase volstaat voor alle apparaten met een moderne browser. Echter, de functionaliteit van PWA’s is beperkter vergeleken met native apps, vooral op het gebied van toegang tot hardware en beveiligde APIs \autocite{Malavolta2023}. Op iOS bijvoorbeeld is de ondersteuning voor pushnotificaties en offline opslag nog steeds beperkt ten opzichte van Android.
+De belangrijkste voordelen van PWA’s zijn hun platformonafhankelijkheid en relatief lage ontwikkelkosten: één codebase is voldoende voor alle apparaten met een moderne browser. De functionaliteit is echter beperkter dan bij native apps, vooral wat betreft toegang tot hardware en beveiligde API’s. Zo is de ondersteuning voor pushnotificaties en offline opslag op iOS nog steeds minder uitgebreid dan op Android.
 
-\textbf{Kritische noot:} Hoewel PWA’s kostenbesparend zijn, blijven beperkingen in functionaliteit en platformondersteuning een uitdaging voor complexere applicaties.
+De markt voor PWA’s groeit snel. In 2023 werd de wereldwijde marktwaarde geschat op 1,46 miljard USD, met een verwachte jaarlijkse groei van 31,1 procent tussen 2024 en 2030 \autocite{Research2024}. Deze groei wordt gedreven door factoren zoals de toenemende internetpenetratie en de vraag naar snelle, toegankelijke mobiele ervaringen. Grote bedrijven zoals Tinder, X (voorheen Twitter) en Forbes maken al gebruik van PWA-technologie. Figuur~\ref{fig:pwa_market} toont de verwachte marktgroei tot 2030.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.75\textwidth]{pwa-market.png}
+    \caption{Wereldwijde marktgroei van Progressive Web Apps (USD miljard), 2020–2030. Bron: Grand View Research, 2025. \autocite{Research2024}}
+    \label{fig:pwa_market}
+\end{figure}
 
 \subsection{Cross-platform frameworks}
-Cross-platform frameworks zoals Flutter, React Native en .NET MAUI bieden een compromis tussen de prestaties van native apps en de ontwikkelsnelheid van PWA’s. Deze technologieën maken het mogelijk om met één gedeelde codebase applicaties te ontwikkelen voor meerdere platforms, wat leidt tot een kortere ontwikkeltijd en lagere onderhoudskosten \autocite{Kuppan2024}.
+Cross-platform frameworks zoals Flutter, React Native en .NET MAUI vormen een middenweg tussen de prestaties van native apps en de snelle ontwikkeltijd van PWA’s. Ze maken het mogelijk om met één gedeelde codebase applicaties te ontwikkelen voor meerdere platformen, wat de ontwikkeltijd verkort en onderhoudskosten verlaagt \autocite{Kuppan2024}.\\
 
-Flutter en React Native renderen hun gebruikersinterfaces met behulp van eigen rendering-engines of native componenten, terwijl .NET MAUI gebruikmaakt van platform-native UI-elementen via .NET-technologie. Uit vergelijkend onderzoek blijkt dat Flutter uitblinkt in UI-prestaties en animaties, terwijl .NET MAUI voordeel biedt bij integratie in bestaande Microsoft-omgevingen \autocite{Gajjam2025}. Toch blijft de prestaties van cross-platform apps in sommige gevallen iets achter bij volledig native oplossingen, met name bij zware grafische of rekenintensieve toepassingen.
+Flutter en React Native gebruiken eigen rendering-engines of native componenten voor de gebruikersinterface, terwijl .NET MAUI direct platform-native UI-elementen aanspreekt via .NET-technologie. Uit onderzoek blijkt dat Flutter uitblinkt in vloeiende animaties en UI-prestaties, terwijl .NET MAUI sterk is in integratie met Microsoft-omgevingen \autocite{Gajjam2025}. Toch blijven cross-platform apps soms iets achter bij native apps, vooral bij grafisch intensieve of rekenintensieve toepassingen.
 
-\textbf{Samenvattend:} Cross-platform frameworks bieden een aantrekkelijk evenwicht voor projecten met beperkte tijd en middelen, hoewel trade-offs in prestaties en integratie blijven bestaan.
+\begin{table}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{comparison1.png}
+    \caption[Integratie]{Vergelijking van .NET MAUI, Flutter en React Native op basis van geschiktheid voor enterprise-omgevingen \autocite{Gajjam2025}}
+    \label{fig:vergelijking}
+\end{table}
 
-\subsection{Vergelijking: prestaties, gebruikservaring en ontwikkeltijd}
-De keuze voor een ontwikkelstrategie is vaak afhankelijk van de context, doelstellingen en technische randvoorwaarden van het project. In Tabel~\ref{tab:vergelijking-strategie} worden de drie besproken benaderingen vergeleken op basis van drie criteria: prestaties, gebruikservaring en ontwikkeltijd.
+\begin{table}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{comparison2.png}
+    \caption[Frameworkkeuze]{Overzicht van aanbevolen cross-platform frameworks (Flutter, React Native en .NET MAUI) op basis van specifieke projectvereisten \autocite{Gajjam2025}}
+    \label{tab:frameworkkeuze}
+\end{table}
 
-Native apps zijn ideaal voor toepassingen waarbij optimale prestaties en gebruikerservaring essentieel zijn, zoals games of applicaties met veel interactie. Voor eenvoudige toepassingen of informatieve apps kan een PWA volstaan. Cross-platform frameworks bieden een aantrekkelijk evenwicht voor projecten met beperkte tijd of middelen, zonder al te veel in te leveren op gebruikerservaring of prestaties \autocite{Longe2025}.
+\subsection{Samenvatting en aanbevelingen}
+Welke mobiele ontwikkelstrategie het beste past, hangt af van de context, de doelstellingen en de technische randvoorwaarden van het project. Native apps zijn ideaal voor toepassingen waarbij maximale prestaties en een hoogwaardige gebruikerservaring cruciaal zijn, bijvoorbeeld bij games of apps met intensieve interactie. Deze aanpak zorgt voor optimale integratie met het besturingssysteem en directe hardwaretoegang, maar vergt vaak aparte teams per platform, wat hogere kosten en een langere ontwikkeltijd tot gevolg heeft.\\
 
-\section{Cross-Platform Ontwikkeling met .NET MAUI}
+Progressive Web Apps bieden een kosteneffectieve, platformonafhankelijke oplossing, met één codebase voor alle moderne browsers. Ze zijn geschikt voor eenvoudige of informatieve apps zonder complexe functies. De functionaliteit is echter beperkter, vooral wat betreft hardwaretoegang en beveiligde API’s. Ook is de ondersteuning voor bepaalde functies, zoals pushnotificaties op iOS, nog beperkt.\\
 
-\subsection{Opkomst van .NET MAUI}
-Een van de recente ontwikkelingen op het gebied van cross-platform mobiele ontwikkeling is de opkomst van .NET MAUI (Multi-platform App UI). Dit framework bouwt voort op eerdere technologieën zoals Xamarin en integreert nauw met het bredere .NET-ecosysteem, waaronder ASP.NET Core en Azure-diensten \autocite{Klesman2023}. In de literatuur wordt .NET MAUI vaak geprezen vanwege de verbeterde prestaties, moderne gebruikersinterface en de mogelijkheid om met één codebase apps te ontwikkelen voor meerdere platformen. Wanneer vergeleken met andere frameworks zoals React Native en Flutter, worden vooral de diepe integratie met Microsoft-technologieën en de schaalbaarheid als voordelen genoemd \autocite{Kuppan2024}.
+Cross-platform frameworks als Flutter, React Native en .NET MAUI vormen een aantrekkelijk compromis: met één gedeelde codebase kunnen apps voor meerdere platformen worden ontwikkeld, wat de ontwikkeltijd verkort en het onderhoud vereenvoudigt. Flutter onderscheidt zich door uitstekende UI-prestaties en animaties, terwijl .NET MAUI een goede keuze is voor organisaties die diep in het Microsoft-ecosysteem zitten, mede dankzij de integratie met Visual Studio en Azure.\\
 
-\begin{figure}
-	\centering
-	\includegraphics[width=0.8\textwidth]{comparison1.png}
-	\caption[Integratie]{Geschiktheid van .NET MAUI voor enterprise-omgevingen}
+Figuur~\ref{fig:vergelijking} toont een overzicht van de voor- en nadelen van deze strategieën. De beste keuze hangt af van het doel van de app, de gewenste gebruikerservaring en de beschikbare middelen. Zo is .NET MAUI vaak de beste optie in enterprise-omgevingen waar stabiliteit, veiligheid en integratie centraal staan, terwijl native ontwikkeling of PWA’s beter kunnen passen bij specifieke projectdoelen en budgetten.\\
+
+Kortom, door zorgvuldig te wegen tussen prestaties, ontwikkeltijd, functionaliteit en organisatorische context, kan een projectteam een mobiele ontwikkelstrategie kiezen die zowel technische als zakelijke eisen optimaal bedient.
+
+\section{Vergelijking van Cross-Platform Frameworks}
+
+\subsection{Flutter}
+Flutter is een open-source UI-framework van Google, gebaseerd op de programmeertaal Dart. Het staat bekend om hoge prestaties, vloeiende animaties en een uitgebreide set widgets voor native-achtige gebruikersinterfaces. Flutter ondersteunt iOS, Android, web en desktop en profiteert van een groeiende community met veel beschikbare plug-ins \autocite{Gajjam2025}.\\
+
+Een onderscheidend kenmerk is \emph{hot reload}, waarmee ontwikkelaars realtime wijzigingen kunnen doorvoeren, wat de ontwikkelsnelheid sterk verhoogt. Flutter ondersteunt zowel Material Design als Cupertino-stijl en maakt gebruik van de Skia-renderengine voor consistente prestaties \autocite{Rodriguez2025}.\\
+
+In 2023 gebruikte 46\% van ontwikkelaars wereldwijd Flutter, waarmee het het populairste cross-platform framework is. Grote merken zoals Google Ads, BMW en Alibaba vertrouwen op Flutter, wat de kracht van één codebase en besparingen in tijd en kosten benadrukt. Figuur~\ref{fig:flutter} toont een overzicht van het gebruik van verschillende frameworks.\\
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.75\textwidth]{flutter.jpg}
+    \caption{Gebruik van cross-platform frameworks onder ontwikkelaars in 2023. Bron: Statista \autocite{Rodriguez2025}}
+    \label{fig:flutter}
 \end{figure}
+
+Een beperking is de matige integratie met enterprise-systemen en Microsoft-technologieën, wat voor organisaties die sterk op het Microsoft-ecosysteem steunen een nadeel kan zijn.
+
+\subsection{React Native}
+React Native, ontwikkeld door Meta, maakt het mogelijk mobiele apps te bouwen met JavaScript en React. Het biedt een goede balans tussen snelheid, performance en schaalbaarheid, zeker in combinatie met het Expo-platform dat native build-omgevingen vereenvoudigt \autocite{Ivanov2025}.\\
+
+Met één codebase voor iOS en Android worden ontwikkeltijden verkort en kosten gedrukt, wat vooral aantrekkelijk is voor kleine teams. Expo voegt hier hot reloading en een managed workflow aan toe, plus de Expo Go-app voor directe testing op fysieke apparaten \autocite{Ivanov2025}.\\
+
+React Native levert native-achtige prestaties via een brug naar native API's, en animaties verlopen soepel dankzij bibliotheken als react-native-reanimated \autocite{Ivanov2025}. Over-the-Air updates maken snelle uitrol van fixes mogelijk zonder app store tussenkomst.\\
+
+Echter, voor complexe platform-specifieke functies is vaak native code nodig, wat extra onderhoud vergt. De integratie met Microsoft-technologieën is beperkt, waardoor .NET MAUI vaak de voorkeur heeft in enterprise-omgevingen met Azure en .NET-backends \autocite{Longe2025}.
+
+\subsection{.NET MAUI}
+.NET MAUI, de opvolger van Xamarin, is Microsofts nieuwste cross-platform framework. Het stelt ontwikkelaars in staat met één codebase apps te bouwen voor iOS, Android, Windows en macOS, wat kosten en onderhoud reduceert \autocite{Sheth2024}.\\
+
+De diepe integratie met het Microsoft-ecosysteem (Visual Studio, Azure, .NET Core) zorgt voor uniforme tooling, samenwerking en toegang tot uitgebreide documentatie \autocite{Sheth2024}. Visual Studio ondersteunt functies als Hot Reload en Live Preview voor een snelle ontwikkelcyclus.\\
+
+Dankzij een single-projectstructuur vereenvoudigt .NET MAUI platformoverschrijdend ontwikkelen, terwijl native UI-componenten automatisch aangepast worden aan het besturingssysteem \autocite{Sheth2024}. Dit zorgt voor consistente gebruikerservaring zonder in te boeten aan merkidentiteit.\\
+
+Performance is sterk dankzij efficiënt geheugenbeheer, snelle opstarttijden en directe toegang tot native API’s. Platform-specifieke extensies zijn mogelijk via custom handlers zonder de gedeelde codebasis te verlaten.\\
+
+Voor organisaties die zwaar investeren in Microsoft-technologieën biedt .NET MAUI een strategisch voordeel door naadloze integratie met ASP.NET Core en Azure App Services \autocite{Klesman2023}.
 
 \subsection{Technologische Continuïteit}
-Een belangrijke motivatie voor de keuze van .NET MAUI als ontwikkeltechnologie binnen dit project is de bestaande technologie-stack van de opdrachtgever, waarin reeds gebruik wordt gemaakt van het .NET-ecosysteem. Door .NET MAUI te verkiezen boven andere populaire cross-platform frameworks zoals React Native of Flutter, wordt er bewust gekozen voor technologische continuïteit en hergebruik van bestaande kennis en infrastructuur. Dit verlaagt niet alleen de leercurve voor ontwikkelaars, maar maakt ook integratie met bestaande backendcomponenten efficiënter, bijvoorbeeld via ASP.NET Core of Azure-integraties. Voor een organisatie die reeds vertrouwd is met C# en andere Microsoft-technologieën, vormt .NET MAUI daardoor een toekomstbestendige keuze die zowel technische als organisatorische voordelen oplevert \autocite{Longe2025}.
+Gezien de opdrachtgever reeds intensief werkt met het .NET-ecosysteem (C#, ASP.NET Core, Azure), sluit .NET MAUI optimaal aan. Dit vermindert de leercurve, vereenvoudigt integratie en onderhoud, terwijl Flutter en React Native aanvullende kennis en inspanning vereisen \autocite{Longe2025}.
 
-\textbf{Projectrelevantie:} Deze stand van zaken onderbouwt daarmee expliciet de keuze voor .NET MAUI binnen dit project.
+\subsection{Samenvatting en Aanbeveling}
+Flutter, React Native en .NET MAUI bieden elk unieke voordelen. Flutter is ideaal voor visueel rijke apps en snelle ontwikkeling, React Native voor brede platformondersteuning en een grote community, terwijl .NET MAUI uitblinkt in integratie met Microsoft-technologie en enterprise-functionaliteit.\\
 
-\begin{figure}
-	\centering
-	\includegraphics[width=0.8\textwidth]{comparison2.png}
-	\caption[Vergelijking]{Vergelijking van cross-platform frameworks}
-\end{figure}
-
-\subsection{Vergelijking met Alternatieven}
-Bovendien blijkt uit recente vergelijkende analyses tussen .NET MAUI, Flutter en React Native dat .NET MAUI bij uitstek geschikt is voor enterprise-omgevingen waarin stabiliteit, veiligheid en systeemintegratie centraal staan. Waar Flutter uitblinkt in UI-rijke toepassingen met vloeiende animaties, en React Native gewaardeerd wordt om zijn grote community en brede platformondersteuning, onderscheidt .NET MAUI zich door zijn native UI-componenten, nauwe integratie met Microsoft-tools zoals Visual Studio en Azure, en ondersteuning voor zowel desktop- als mobiele platformen. Deze eigenschappen maken het de meest geschikte keuze voor organisaties die vertrouwen op Microsoft-technologieën en op zoek zijn naar een eenduidige, schaalbare en onderhoudbare oplossing voor cross-platform applicatieontwikkeling \autocite{Gajjam2025}.
-
-\textbf{Reflectie:} Toch zijn er nog uitdagingen, zoals het relatief jonge karakter van .NET MAUI en de afhankelijkheid van het Microsoft-ecosysteem, wat de flexibiliteit kan beperken in niet-Microsoft gerichte projecten.
+Voor een organisatie met sterke Microsoft-voorkeur en enterprise-eisen is .NET MAUI de beste keuze, dankzij technologische continuïteit, hergebruik van kennis en consistente gebruikerservaring.
 
 \section{Moderne Authenticatie en Beveiligingspraktijken}
 
-\subsection{Gebruik van JSON Web Tokens (JWT)}
-Op het gebied van beveiliging signaleren onderzoekers een toenemende voorkeur voor moderne authenticatiemethoden. JSON Web Tokens (JWT) worden vaak genoemd als efficiënte en schaalbare manier om authenticatie en autorisatie te beheren in mobiele applicaties \autocite{Gao2023}. Deze tokens bevatten versleutelde gebruikersinformatie en stellen applicaties in staat om zonder server-side sessiebeheer toch een hoge mate van veiligheid te realiseren. JWT wordt gezien als een robuuste oplossing, mits correct geïmplementeerd, bijvoorbeeld met versleuteling, tijdsbeperking en verzending via beveiligde verbindingen.
+\subsection{Vergelijking van moderne authenticatiemethoden}
+Mobiele authenticatie kent diverse methoden zoals sessiegebaseerde authenticatie, OAuth2 en JSON Web Tokens (JWT). Sessiegebaseerde authenticatie vereist server-side sessiebeheer, wat bij veel gebruikers schaalbaarheidsproblemen kan veroorzaken. OAuth2 is krachtig voor federatieve toegang, maar complex en minder geschikt voor eenvoudige interne apps \autocite{Gao2023}.\\
 
-\subsection{Wachtwoordbeveiliging}
-Daarnaast blijft de veilige opslag van wachtwoorden een essentieel onderwerp binnen mobiele app-beveiliging. De toepassing van cryptografische hashing-algoritmes zoals bcrypt en PBKDF2 wordt breed aanbevolen vanwege hun weerstand tegen brute-force aanvallen \autocite{Gupta2022}. Het gebruik van salting als aanvullende techniek maakt dictionary-aanvallen moeilijker uitvoerbaar en is volgens de literatuur een noodzakelijke maatregel bij moderne wachtwoordbeveiliging \autocite{Arias2025}. Tegelijkertijd wordt in studies gewezen op de risico’s van verouderde algoritmes zoals MD5 en SHA1, die ondanks hun bekendheid vaak onvoldoende bescherming bieden \autocite{ReesCarter2024}.
+JWT is lichtgewicht, schaalbaar en platformonafhankelijk, doordat versleutelde claims in tokens worden opgeslagen zonder server-side sessiebeheer. Dit bevordert performance en flexibiliteit, vooral in cloud- en microservices-architecturen, mits correcte encryptie en tokenbeheer \autocite{Gao2023}.
+
+\subsection{Overwegingen bij wachtwoordbeveiliging}
+Veilige wachtwoordopslag is cruciaal. Hashing-algoritmes als bcrypt en PBKDF2 worden aanbevolen vanwege hun sterke weerstand tegen brute-force aanvallen. Salting verhoogt de bescherming door unieke data toe te voegen aan wachtwoorden vóór hashing \autocite{Gupta2022, Arias2025}.\\
+
+Verouderde algoritmes zoals MD5 en SHA1 zijn kwetsbaar en worden afgeraden \autocite{ReesCarter2024}.
 
 \subsection{Beveiligde Login-interfaces}
-De gebruikersinterface, en met name de loginpagina, wordt in de literatuur besproken als een kritiek punt waar gebruiksvriendelijkheid en veiligheid in balans moeten zijn. Beperkingen op het aantal mislukte inlogpogingen en het gebruik van tweefactorauthenticatie (2FA) worden genoemd als effectieve maatregelen om aanvallen zoals credential stuffing tegen te gaan \autocite{Chinnasamy2025, Jurisons2024}. Ook wordt het belang benadrukt van een goede gebruikerservaring, zodat beveiligingsmaatregelen geen hinder vormen voor legitieme gebruikers.
+De loginpagina vereist een balans tussen gebruiksvriendelijkheid en veiligheid. Limiteren van mislukte pogingen en inzetten van tweefactorauthenticatie (2FA) zijn effectieve maatregelen tegen aanvallen als credential stuffing, zonder legitieme gebruikers te hinderen \autocite{Chinnasamy2025, Jurisons2024}.
 
-\textbf{Kritische reflectie:} Hoewel JWT en moderne hashing-technieken veel veiligheid bieden, blijft de implementatiecomplexiteit een risico, waarbij verkeerde configuraties tot kwetsbaarheden kunnen leiden.
+\subsection{Samenvattende overwegingen}
+Moderne beveiliging vereist balans tussen schaalbaarheid, gebruiksgemak en veiligheid. JWT biedt een efficiënte, schaalbare aanpak in moderne architecturen, terwijl robuuste hashing en salting wachtwoordbeveiliging versterken. De gebruikersinterface moet beveiliging en gebruiksgemak combineren, bijvoorbeeld via 2FA en inlogpogingenlimiet. Deze overwegingen leiden tot een toekomstbestendige beveiligingsstrategie \autocite{Gao2023, Gupta2022, Arias2025, ReesCarter2024, Chinnasamy2025, Jurisons2024}.
 
 \section{Beveiliging en Beheer van Pushnotificaties}
 
-\subsection{Technische Implementatie}
-Een ander belangrijk onderwerp binnen mobiele applicatieontwikkeling is het gebruik van pushnotificaties. Deze notificaties worden vaak gebruikt om gebruikers snel op de hoogte te brengen van belangrijke gebeurtenissen, bijvoorbeeld wanneer een app gekoppeld is aan systemen zoals zonnepanelen of slimme meters. In zulke situaties kunnen pushnotificaties gebruikers waarschuwen voor overproductie van energie of andere relevante veranderingen.
+\subsection{Onderzoek naar Technische Implementatieopties}
+Pushnotificaties zijn essentieel voor realtime informatie, bijvoorbeeld bij zonnepanelen of slimme meters. Apple Push Notification Service (APNs) en Firebase Cloud Messaging (FCM) zijn robuuste platform-specifieke diensten.\\
 
-Bij het implementeren van pushnotificaties is een belangrijk technisch aspect het correct registreren en beheren van devicetokens. Voor iOS-apparaten kan worden gebruikgemaakt van Apple Push Notification Service (APNs), terwijl Android-apparaten kunnen gebruikmaken van Firebase Cloud Messaging (FCM). Bij het opstarten van een mobiele applicatie dient elk apparaat een uniek push-token aan te vragen. In het geval van Firebase gebeurt dit door per gebruiker een token te registreren dat aan zijn account wordt gekoppeld. Dit stelt de backend in staat om gerichte notificaties te versturen op basis van gebruikersacties of systeemgebeurtenissen.
+Cross-platform diensten zoals OneSignal centraliseren beheer en bieden extra functies, maar voegen complexiteit en afhankelijkheid toe. Eigen infrastructuren (websockets, MQTT) bieden flexibiliteit maar zijn complex en minder schaalbaar.\\
+
+Vanwege betrouwbaarheid en integratie zijn native diensten (APNs, FCM) doorgaans de beste keuze in kritieke systemen.
 
 \subsection{Beheer en Verificatie van Tokens}
-Een aandachtspunt hierbij is de levensduur van deze tokens. Pushnotificatietokens kunnen vervallen, bijvoorbeeld bij herinstallatie van de app, verandering van instellingen of het verlopen van de sessie. Daarom is het van belang dat de applicatie in staat is om deze tokens automatisch te verversen en opnieuw te registreren bij de backend. In dit kader wordt vaak ook het automatisch vernieuwen van JWT-tokens op de achtergrond toegepast, zodat gebruikerssessies geldig blijven zonder handmatige interventie. Dit verhoogt niet alleen de veiligheid, maar ook de gebruikerservaring. Verder is het aan te raden om bij registratie het apparaattype (iOS of Android) mee te geven, zodat het systeem het juiste distributiekanaal voor notificaties gebruikt.
+Push-tokens identificeren apparaten maar kunnen ongeldig raken door herinstallatie of systeemwijzigingen. Automatisch vernieuwen bij app-start zorgt voor actuele tokens maar verhoogt netwerkactiviteit.\\
+
+Alternatief is vernieuwen pas na foutdetectie (‘InvalidToken’), efficiënter maar met kortere uitval. Periodiek handmatig vernieuwen beperkt netwerkverkeer, maar verhoogt risico op gemiste notificaties.\\
+
+Een hybride aanpak (vernieuwen bij app-start, bij fouten en periodiek valideren) is aan te raden voor optimale gebruikerservaring en veiligheid.
 
 \subsection{Functionele Impact en Veiligheidsmaatregelen}
-In de praktijk zullen gebruikers echter niet continu actief zijn binnen de mobiele applicatie. Dit betekent dat het geldig blijven van het pushnotificatietoken essentieel is: wanneer een token is vervallen of ongeldig is geworden, ontvangt de gebruiker geen meldingen meer – zelfs niet bij kritieke gebeurtenissen zoals het overschot aan opgewekte zonne-energie. In applicaties die afhankelijk zijn van realtime communicatie over belangrijke systeemstatussen, kan dit leiden tot functionele beperkingen of gemiste waarschuwingen.
+Pushnotificaties kunnen gevoelige data bevatten, wat beveiliging vereist. Mogelijke maatregelen zijn: end-to-end encryptie van payloads (zeer veilig, maar complex), minimaliseren van gevoelige data in notificaties (vertraagt informatieverstrekking), en server-side verificatie bij app-opening (praktisch en veilig).\\
 
-Daarnaast moet bijzondere aandacht worden besteed aan de beveiliging van pushnotificatietokens en de inhoud van de berichten zelf. Pushnotificaties moeten voldoende gegevens bevatten om na ontvangst direct te kunnen navigeren naar de juiste pagina binnen de app, specifiek afgestemd op de juiste gebruiker en situatie. Dit betekent dat de notificatie bijvoorbeeld een gebruikers-ID of andere contextuele informatie moet bevatten. Omdat het hier vaak gaat om gevoelige gegevens, zoals energieverbruik of systeemstoringen, is het essentieel dat deze informatie op een veilige manier wordt verwerkt en verzonden, bijvoorbeeld via versleuteling of in combinatie met server-side verificatie bij het openen van de app via een notificatie. Een fout in dit proces kan leiden tot datalekken of ongeautoriseerde toegang tot persoonlijke informatie.
+In onze context is server-side verificatie met minimale gevoelige data in notificaties een pragmatische keuze. Daarnaast moeten tokens regelmatig gecontroleerd en ongeldig verklaarde tokens verwijderd worden om datalekken te voorkomen.
 
-Wanneer een token vervalt, kan dit doorgaans worden opgevangen door de pushservice zelf, die een foutcode retourneert wanneer een bericht niet kan worden afgeleverd. Op basis hiervan kan het systeem het oude token verwijderen en bij de eerstvolgende gebruikersinteractie een nieuw token opvragen. Het implementeren van deze logica is essentieel om te waarborgen dat pushnotificaties betrouwbaar blijven functioneren over de gehele levenscyclus van de applicatie.
-
-\textbf{Slotopmerking:} Beheer van pushnotificatietokens en beveiliging van notificaties zijn kritieke aandachtspunten die vaak onderschat worden, maar cruciaal zijn voor het succes van real-time mobiele applicaties.
 

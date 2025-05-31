@@ -5,7 +5,7 @@
 \chapter{\IfLanguageName{dutch}{Methodologie}{Methodology}}%
 \label{ch:methodologie}
 
-Dit onderzoek wordt uitgevoerd in verschillende fasen, waarbij elke fase een specifieke doelstelling heeft en resulteert in concrete deliverables. De gekozen aanpak is gebaseerd op een iteratieve en stapsgewijze ontwikkeling van een mobiele applicatie met \texttt{.NET MAUI}, waarbij zowel frontend als backendcomponenten worden ontwikkeld en getest. In dit hoofdstuk worden de verschillende fasen toegelicht en wordt verantwoord waarom deze aanpak is gekozen.
+Dit onderzoek wordt uitgevoerd in verschillende fasen, waarbij elke fase een specifieke doelstelling heeft en resulteert in concrete deliverables. De gekozen aanpak is gebaseerd op een iteratieve en stapsgewijze ontwikkeling van een mobiele applicatie, waarbij zowel frontend als backendcomponenten worden ontwikkeld en getest. In dit hoofdstuk worden de verschillende fasen toegelicht en wordt verantwoord waarom deze aanpak is gekozen.
 
 \section{Omgeving klaarzetten}
 
@@ -15,53 +15,53 @@ De architectuur van het project wordt opgezet met een duidelijke scheiding van v
 
 Daarnaast wordt een Client-laag, genaamd ATS, ingericht waarin alle front-end gerelateerde onderdelen van de applicatie zijn ondergebracht. Deze laag bevat de Views (voor de UI-schermen), ViewModels (voor de logica en data-binding), en client-side services voor communicatie met de backend. \\
 
-Om herbruikbaarheid en consistentie te bevorderen, wordt ook een aparte Shared-laag toegevoegd. Deze bevat gedeelde onderdelen zoals DTO's (Data Transfer Objects), Enums en Interfaces, die zowel door de backend als door de client kunnen worden gebruikt. Dit zorgt ervoor dat gegevensstructuren consistent blijven tussen beide zijden van de applicatie. \\
+Om herbruikbaarheid en consistentie te bevorderen, wordt ook een aparte Shared-laag toegevoegd. Deze bevat gedeelde onderdelen zoals DTO's (Data Transfer Objects), Enums en Interfaces, die zowel door de backend als door de client kunnen worden gebruikt. Dit zorgt ervoor dat gegevensstructuren consistent blijven tussen beide zijden van de applicatie. De volledige opbouw van de projectstructuur, zoals ingericht in Visual Studio, is weergegeven in Figuur~\ref{fig:omgeving}. \\
 
 Tot slot wordt een database ingericht om gebruikersgegevens en authenticatie-informatie op te slaan. De gekozen methode voor deze fase bestaat uit het raadplegen van de officiële documentatie van .NET MAUI en het uitvoeren van praktische experimenten om de configuratie optimaal af te stemmen. Het resultaat van deze fase is een volledig geconfigureerde ontwikkelomgeving, inclusief de benodigde tools, frameworks, projectstructuur en databases.\\
 
 \begin{figure}[H]
-	\centering
-	\includegraphics[scale=0.5]{omgeving.png}
-	\caption{Werkomgeving van het project}
-	\label{fig:omgeving}
+    \centering
+    \includegraphics[scale=0.5]{omgeving.png}
+    \caption{Werkomgeving van het project in Visual Studio (Client, Server & Shared)}
+    \label{fig:omgeving}
 \end{figure}
 
 \section{Loginpagina}
 
-In de tweede fase wordt de basisfunctionaliteit voor gebruikersauthenticatie geïmplementeerd. De focus ligt op het ontwerpen en ontwikkelen van een gebruiksvriendelijke loginpagina. Hiervoor wordt eerst de frontend ontwikkeld in .NET MAUI(XAML-code), waarbij gebruik wordt gemaakt van standaard UI-componenten en best practices op het gebied van gebruiksvriendelijkheid. \\
+In de tweede fase wordt de basisfunctionaliteit voor gebruikersauthenticatie geïmplementeerd. De focus ligt op het ontwerpen en ontwikkelen van een gebruiksvriendelijke loginpagina geïllustreerd in Figuur~\ref{fig:loginpagina}. Hiervoor wordt eerst de frontend ontwikkeld in .NET MAUI (XAML-code), waarbij gebruik wordt gemaakt van standaard UI-componenten en best practices op het gebied van gebruiksvriendelijkheid. \\
 
 \begin{figure}[H]
-	\centering
-	\includegraphics[scale=0.5]{login.png}
-	\caption{Loginpagina ontworpen in .NET MAUI}
-	\label{fig:loginpagina}
+    \centering
+    \includegraphics[scale=0.5]{login.png}
+    \caption{Loginpagina ontworpen in .NET MAUI}
+    \label{fig:loginpagina}
 \end{figure}
 
-Vervolgens wordt een backend opgezet waarin gebruikersgegevens worden beheerd en gecontroleerd via een database. Na de implementatie wordt de loginpagina getest op verschillende apparaten om de correcte werking te garanderen. Tijdens deze fase wordt gebruikgemaakt van officiële documentatie en technische bronnen om de implementatie te ondersteunen. Verschillende oplossingen worden onderzocht, toegepast en geëvalueerd om tot een stabiele en veilige authenticatieoplossing te komen. Het eindresultaat is een werkende loginpagina die correct communiceert met de backend en gebruikersgegevens valideert.
+Vervolgens wordt een backend opgezet waarin gebruikersgegevens worden beheerd en gecontroleerd via een database. In Figuur~\ref{fig:gebruikerstabel} wordt geïllustreerd hoe een rij van een gebruiker eruitziet na het succesvol toe te voegen aan de database. Na de implementatie wordt de loginpagina getest op verschillende apparaten om de correcte werking te garanderen. Tijdens deze fase wordt gebruikgemaakt van officiële documentatie en technische bronnen om de implementatie te ondersteunen. Verschillende oplossingen worden onderzocht, toegepast en geëvalueerd om tot een stabiele en veilige authenticatieoplossing te komen. Het eindresultaat is een werkende loginpagina die correct communiceert met de backend en gebruikersgegevens valideert.
 
 \begin{figure}[H]
-	\centering
-	\includegraphics[width=0.6\textwidth]{gebruikerstabel.png}
-	\caption{Succesvol toevoegen van gebruikers in lokale database}
-	\label{fig:gebruikerstabel}
+    \centering
+    \includegraphics[width=0.6\textwidth]{gebruikerstabel.png}
+    \caption{Succesvol toevoegen van gebruikers in lokale database}
+    \label{fig:gebruikerstabel}
 \end{figure}
 
 \section{JWT Authenticatie en Hashing}
 
-De derde fase richt zich op het beveiligen van de gebruikersauthenticatie door middel van JWT (JSON Web Token) en hashing-technieken. Dit is een cruciale stap om ongeautoriseerde toegang te voorkomen en gebruikersgegevens veilig op te slaan. JWT wordt geïmplementeerd als mechanisme voor sessiebeheer, waarbij gebruikers een token ontvangen na succesvolle authenticatie. Dit token wordt vervolgens gebruikt om toegang te krijgen tot beveiligde endpoints. Daarnaast worden wachtwoorden gehasht opgeslagen in de database, zodat ze niet in platte tekst beschikbaar zijn. De beveiligingsmechanismen worden uitvoerig getest om mogelijke zwakke plekken te identificeren en te verbeteren. \\
+De derde fase richt zich op het beveiligen van de gebruikersauthenticatie door middel van JWT (JSON Web Token) en hashing-technieken. Dit is een cruciale stap om ongeautoriseerde toegang te voorkomen en gebruikersgegevens veilig op te slaan. JWT wordt geïmplementeerd als mechanisme voor sessiebeheer, waarbij gebruikers een token ontvangen na succesvolle authenticatie. Dit token wordt vervolgens gebruikt om toegang te krijgen tot beveiligde endpoints. Een voorbeeld van zo’n gegenereerd JWT-token na succesvolle login is weergegeven in Figuur~\ref{fig:token}. Daarnaast worden wachtwoorden gehasht opgeslagen in de database, zodat ze niet in platte tekst beschikbaar zijn. De beveiligingsmechanismen worden uitvoerig getest om mogelijke zwakke plekken te identificeren en te verbeteren. \\
 
 \begin{figure}[H]
-	\centering
-	\includegraphics[scale=0.5]{token.png}
-	\caption{Token na een succesvolle login met info over gebruiker}
-	\label{fig:token}
+    \centering
+    \includegraphics[scale=0.5]{token.png}
+    \caption{Token na een succesvolle login met info over gebruiker}
+    \label{fig:token}
 \end{figure}
 
 Het resultaat is een veilige en betrouwbare loginomgeving die voldoet aan moderne beveiligingsstandaarden. Om het sessiebeheer verder te versterken, wordt ervoor gekozen om het JWT-token niet op te slaan in een lokale database, maar in de secure storage van het mobiele besturingssysteem. Deze opslaglocatie is speciaal ontworpen voor het veilig bewaren van gevoelige informatie en biedt verhoogde bescherming tegen ongeautoriseerde toegang of reverse engineering van de applicatie. Een bijkomend voordeel van deze aanpak is dat het token automatisch beschikbaar blijft zolang de gebruiker is aangemeld, zonder dat een externe databank geconsulteerd hoeft te worden. Bij uitloggen wordt het token expliciet verwijderd, waardoor de toegang volledig wordt afgesloten. Deze methode sluit goed aan bij de vereisten van mobiele applicatiebeveiliging en verhoogt zowel de gebruiksvriendelijkheid als de veiligheid van de app.
 
 \section{Pushnotificaties}
 
-In deze fase wordt de mogelijkheid toegevoegd om pushnotificaties te ontvangen en te verzenden binnen de mobiele applicatie. Het doel hiervan is om gebruikers automatisch op de hoogte te brengen van belangrijke updates, bijvoorbeeld wanneer hun systeem een overschot aan zonne-energie detecteert. Om dit te realiseren, wordt de applicatie zodanig ingesteld dat elk toestel een unieke code (token) ontvangt zodra de app wordt geopend. Deze token wordt vervolgens gekoppeld aan de juiste gebruiker, zodat meldingen persoonlijk en correct afgeleverd kunnen worden.
+In deze fase wordt de mogelijkheid toegevoegd om pushnotificaties te ontvangen en te verzenden binnen de mobiele applicatie. Het doel hiervan is om gebruikers automatisch op de hoogte te brengen van belangrijke updates, bijvoorbeeld wanneer hun systeem een overschot aan zonne-energie detecteert. Om dit te realiseren, wordt de applicatie zodanig ingesteld dat elk toestel een unieke code (token) ontvangt zodra de app wordt geopend. Deze token wordt vervolgens gekoppeld aan de juiste gebruiker, zodat meldingen persoonlijk en correct afgeleverd kunnen worden. Het ontvangen van een pushnotificatie binnen de mobiele applicatie is te zien in Figuur~\ref{fig:notification}.\\
 
 Daarnaast wordt ervoor gezorgd dat de app, wanneer er op een melding wordt geklikt, automatisch naar de juiste pagina navigeert. Dit is belangrijk omdat gebruikers zo direct toegang krijgen tot de relevante informatie zonder handmatig door de applicatie te moeten zoeken.
 
@@ -70,10 +70,10 @@ Voor het testen van de pushnotificaties wordt gebruikgemaakt van het platform Po
 Tot slot wordt de algemene werking getest op verschillende toestellen en wordt gecontroleerd of de notificaties ook aankomen wanneer de app niet actief is. Deze aanpak zorgt ervoor dat de meldingen betrouwbaar en gebruiksvriendelijk functioneren binnen de volledige gebruikerservaring. \\
 
 \begin{figure}[H]
-	\centering
-	\includegraphics[width=0.6\textwidth]{notification.png}
-	\caption{Het succesvol ontvangen van een notificatie}
-	\label{fig:notification}
+    \centering
+    \includegraphics[width=0.6\textwidth]{notification.png}
+    \caption{Het succesvol ontvangen van een notificatie}
+    \label{fig:notification}
 \end{figure}
 
 \section{Resultaten en Integratie}
