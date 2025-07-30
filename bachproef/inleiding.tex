@@ -5,12 +5,32 @@
 \chapter{\IfLanguageName{dutch}{Inleiding}{Introduction}}%
 \label{ch:inleiding}
 
-\noindent In een wereld waarin energiebeheer steeds belangrijker wordt, speelt efficiënte monitoring en besturing van energiestromen een cruciale rol. Het SmartKit-systeem van ATS is ontworpen om deze energiestromen, waaronder zonnepanelen, batterijen, laadpalen en verwarmingssystemen, te beheren. Momenteel worden systeemmeldingen, zoals storingen of operationele statusupdates, via e-mail gecommuniceerd. Dit leidt echter tot een overdaad aan berichten, waardoor kritieke meldingen over het hoofd kunnen worden gezien. Een effectievere oplossing is nodig om real-time meldingen beter te beheren en de respons op systeemstoringen te versnellen. \\
+\noindent
+In ons dagelijks leven zijn we voortdurend bezig met het beheren van energie van het uitschakelen van verlichting bij het verlaten van een kamer tot het opladen van elektrische voertuigen op gunstige momenten. Al deze kleine keuzes weerspiegelen een bredere maatschappelijke trend waarin energiebeheer een steeds belangrijkere rol speelt. \\
+
+Recente studies en praktijkervaringen bevestigen deze ontwikkeling. Volgens \autocite{Leemburg2025} verandert energiebeheer snel van een wettelijke verplichting naar een strategisch stuurinstrument binnen organisaties. Door de opkomst van dynamische energieprijzen, netcongestie en zelfleveringsmodellen zoals zonneparken of lokale opslag is inzicht in energieverbruik en de mogelijkheid om hier actief op te sturen essentieel geworden. Zonder gestructureerd energiebeheer blijft men kwetsbaar voor onverwachte kosten, inefficiënties en gemiste duurzaamheidsdoelen. Leemburg benadrukt dat pas wanneer organisaties beschikken over betrouwbare verbruiksdata, ze in staat zijn om daadwerkelijk effectief beleid te voeren rondom energie.\\
+
+\noindent
+In deze context is het van cruciaal belang dat energiestromen niet alleen inzichtelijk zijn, maar ook efficiënt worden bewaakt en beheerd. Volgens \autocite{Selleslagh} groeit de nood aan gestructureerd energiebeheer sterk, onder meer door de elektrificatie van vervoer en verwarming, de toename van zonnepanelen en thuisbatterijen, en de grotere volatiliteit van energietarieven. 
+Het actief spreiden en aansturen van het energieverbruik essentieel om piekbelasting op het elektriciteitsnet te vermijden en om optimaal gebruik te maken van lokaal opgewekte zonne-energie. Met het capaciteitstarief in Vlaanderen, dat het elektriciteitsnetgebruik mee bepaalt op basis van piekverbruik, kan slecht gemonitord of ongecontroleerd energiegedrag leiden tot onnodige kosten. \\
+
+Een energiemanagementsysteem (EMS) speelt hierin een sleutelrol. Zo’n systeem biedt niet alleen realtime inzicht in verbruik en productie, maar kan ook automatisch toestellen aansturen op basis van actuele omstandigheden zoals zoninstraling, netbelasting of dynamische tarieven. Onderzoek van Flux50 toont aan dat huishoudens met een EMS in combinatie met zonnepanelen, batterij en dynamisch contract tot honderden euro’s per jaar kunnen besparen, bovenop mogelijke opbrengsten uit flexibiliteitsdiensten aan het net. Daarnaast kunnen EMS'en het comfort verhogen door slimme automatisering, terwijl ze ook bijdragen aan een stabieler elektriciteitsnet.\\
+
+Uit internationale en Belgische praktijkvoorbeelden blijkt dat verschillende bedrijven experimenteren met dergelijke systemen voor het optimaliseren van hun energieverbruik. Zo worden in projecten met onder andere EnergyVille, VITO en imec systemen getest die energiestromen dynamisch aansturen op basis van netbelasting en prijsprikkels. Deze ontwikkelingen tonen aan dat slimme sturing in reële toepassingen tot meetbare efficiëntiewinsten leidt.\\
+
+In deze context ontwikkelde ATS Groep het SmartKit-systeem, een platform dat ontworpen is om diverse energiestromen — waaronder zonnepanelen, batterijen, laadpalen en verwarmingssystemen — op een geïntegreerde manier te beheren. SmartKit maakt het mogelijk om automatisch verbruiksdata te verzamelen, toestellen aan te sturen en meldingen te genereren op basis van afwijkingen of onderhoudsbehoeften. Momenteel communiceert SmartKit systeemmeldingen, zoals storingen of statusupdates, hoofdzakelijk via e-mail. Dit leidt echter tot een overvloed aan berichten, waardoor kritieke meldingen gemakkelijk over het hoofd worden gezien. Er is daarom behoefte aan een efficiënter systeem voor het realtime beheren en prioriteren van meldingen, zodat afwijkingen sneller kunnen worden opgespoord en verholpen. Een verbeterde meldingsstructuur kan zo niet alleen de bedrijfszekerheid van het systeem verhogen, maar ook de energetische prestaties van het gebouw verbeteren.\\
+
+ATS Groep, oftewel A.T.S. nv, is een multidisciplinaire technologiegroep met hoofdzetel in Merelbeke. De afkorting staat voor \textit{Automatisatie Technieken Schepens}, verwijzend naar oprichter René Schepens. Sinds de oprichting in 1984 groeide het bedrijf uit tot een toonaangevende speler in elektrotechniek, mechatronica, HVAC en energieoplossingen. Met ruim 1200 medewerkers en een geconsolideerde omzet van 365 miljoen euro (2023) biedt ATS totaaloplossingen aan voor industriële, tertiaire en publieke sectoren. In 2015 verwierf energiebedrijf Luminus een meerderheidsparticipatie in ATS Groep, wat de expertise in duurzame en innovatieve energieoplossingen verder versterkte. Met producten zoals SmartKit zet ATS actief in op co-creatie met klanten, energiebesparing en digitalisering van infrastructuurbeheer.
+
 
 \section{\IfLanguageName{dutch}{Probleemstelling}{Problem Statement}}%
 \label{sec:probleemstelling}
 
-\noindent Dit onderzoek richt zich op de ontwikkeling van een mobiele applicatie voor SmartKit die meldingen efficiënter en veiliger naar de juiste gebruikers stuurt via mobiele notificaties. Een dergelijke applicatie kan de beheerders van het systeem in staat stellen sneller en gerichter te reageren, wat de algehele efficiëntie en betrouwbaarheid van het systeem verbetert. \\
+\noindent
+Dit onderzoek richt zich op de ontwikkeling van een mobiele applicatie voor SmartKit die meldingen efficiënter en veiliger naar de juiste gebruikers stuurt via mobiele notificaties. Een dergelijke applicatie kan de beheerders van het systeem in staat stellen sneller en gerichter te reageren, wat de algehele efficiëntie en betrouwbaarheid van het systeem verbetert.\\
+
+SmartKit is een modulair energiemanagementplatform ontwikkeld door ATS Groep, waarmee bedrijven hun energiestromen zoals zonne- en windenergie, batterijopslag, elektrische laadpalen en HVAC-systemen centraal kunnen monitoren, beheren en automatisch aansturen. Dankzij zijn open architectuur en schaalbare opbouw kan SmartKit flexibel geïntegreerd worden met diverse assets en systemen, zowel in industriële omgevingen als in gebouwbeheer. De software ondersteunt onder meer slimme laadinfrastructuur, batterijoptimalisatie, en dynamische PV-sturing. De kracht van SmartKit zit in het combineren van energiemonitoring en -management, wat bedrijven niet alleen inzicht geeft in hun verbruik, maar hen ook in staat stelt om actief en kostenefficiënt te sturen op basis van realtime gegevens. Deze veelzijdigheid maakt het platform bij uitstek geschikt voor toepassingen waarin snelle detectie en gepaste reacties op afwijkingen cruciaal zijn precies waar dit onderzoek op focust.\\
+
 
 \section{\IfLanguageName{dutch}{Onderzoeksvraag}{Research question}}%
 \label{sec:onderzoeksvraag}
@@ -33,7 +53,8 @@
     \item Hoe kan een notificatie betrouwbaar worden afgeleverd aan meerdere gebruikers en aan alle toestellen van eenzelfde gebruiker? Hierbij wordt gekeken naar de technische mogelijkheden en beperkingen van notificatiediensten binnen het gekozen ontwikkelplatform, met aandacht voor schaalbaarheid, betrouwbaarheid en efficiënt beheer van notificatiekanalen.
 \end{itemize}
 
-\noindent Op basis van dit onderzoek zal één technologie geselecteerd worden voor verdere uitwerking. Daarbij wordt onder andere .NET MAUI als mogelijke optie verder onderzocht en geëvalueerd.
+\noindent
+Op basis van dit onderzoek zal één technologie geselecteerd worden voor verdere uitwerking. De evaluatie van mogelijke frameworks en tools gebeurt in een latere fase.
 
 
 \section{\IfLanguageName{dutch}{Onderzoeksdoelstelling}{Research objective}}%
