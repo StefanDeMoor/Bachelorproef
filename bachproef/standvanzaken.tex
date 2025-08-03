@@ -199,6 +199,24 @@ Een andere mogelijkheid is om pas iets te doen als er een foutmelding komt bijvo
 
 Volgens \textcite{pushwoosh2025} kiezen veel ontwikkelaars voor een combinatie van strategieën: ze vernieuwen het token bij het opstarten van de app, controleren periodiek of het nog klopt, en reageren als er iets misgaat. Deze aanpak zorgt ervoor dat meldingen betrouwbaar blijven aankomen, zonder dat er onnodig veel communicatie met de server nodig is.\\
 
+\subsection{Gebruiksvormen van Pushnotificaties}
+
+Pushnotificaties kunnen op verschillende manieren worden verstuurd, afhankelijk van wie je wil bereiken. Binnen Firebase Cloud Messaging (FCM) onderscheiden we drie gangbare methodes: multicast, device groups en topics. Elke methode heeft zijn eigen voordelen en is geschikt voor een specifiek gebruiksscenario.\\
+
+\textbf{Multicast – meerdere toestellen tegelijk benaderen.}\\
+Multicast is een methode waarbij één pushnotificatie tegelijk naar meerdere apparaten wordt gestuurd. Dit gebeurt via een lijst van apparaat-tokens, waarbij elk token een specifiek toestel vertegenwoordigt. Deze methode is vooral handig bij algemene meldingen die voor veel gebruikers tegelijk bedoeld zijn, zoals een storing of onderhoudsbericht. Firebase Cloud Messaging (FCM) ondersteunt tot 500 apparaten per multicast-verzoek.\\
+
+In meer geavanceerde toepassingen, zoals bij locatiegebaseerde noodmeldingen, kan multicast ook slimmer worden ingezet. In plaats van een melding naar alle gebruikers te sturen, kan eerst bepaald worden welke gebruikers zich in een bepaald gebied bevinden — bijvoorbeeld bij een gaslek of stroomonderbreking in een specifieke wijk. \textcite{ThuThuZan2018} tonen aan dat dit efficiënt kan door gebruik te maken van een locatie-indexeringssysteem, waarin de positie van toestellen wordt bijgehouden. Vervolgens kunnen alleen toestellen binnen het relevante gebied een melding ontvangen. Zo wordt multicast strategischer en contextbewuster toegepast, met minder belasting op het netwerk.\\
+
+\textbf{Device Groups – één gebruiker met meerdere toestellen.}\\
+Wanneer een gebruiker je app op meerdere toestellen heeft geïnstalleerd, zoals een smartphone en een tablet, kun je die groeperen in een zogenaamde device group. Hierdoor hoeft de ontwikkelaar geen aparte melding te sturen naar elk toestel, maar slechts naar de groep als geheel. Firebase beheert deze groepen via een notification key. Dit is handig voor bijvoorbeeld een persoonlijk bericht dat consistent op alle toestellen van één persoon moet verschijnen.\\
+
+\textbf{Topics – meldingen op basis van voorkeuren.}\\  
+Bij topic messaging kunnen gebruikers zich abonneren op bepaalde onderwerpen of thema’s, zoals “storingen”, “promoties” of “factuurmeldingen”. Je stuurt dan een melding naar een heel topic, en alleen gebruikers die zich daarvoor hebben aangemeld, ontvangen het bericht. Dit geeft gebruikers meer controle over welke meldingen ze willen ontvangen en maakt het systeem schaalbaar bij een groot gebruikersbestand.\\
+
+Elke methode heeft zijn specifieke rol: multicast is geschikt voor snelle, brede communicatie; device groups zorgen voor gebruiksgemak bij meerdere toestellen; en topics zijn ideaal voor gebruikerssegmentatie en gepersonaliseerde notificaties. Afhankelijk van het doel en de gebruikerssituatie kies je de gepaste strategie.
+
+
 \subsection{Functionele Impact en Veiligheidsmaatregelen}
 
 Pushnotificaties zijn handig om gebruikers direct te informeren, bijvoorbeeld over nieuwe berichten of belangrijke meldingen. Toch kunnen deze meldingen ook gevoelige informatie bevatten, zoals namen, bedragen of privégegevens. Dat maakt het belangrijk om bewust om te gaan met beveiliging en privacy.\\
