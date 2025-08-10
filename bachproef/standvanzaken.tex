@@ -123,6 +123,49 @@ Flutter, React Native en .NET MAUI bieden elk unieke voordelen. Flutter is ideaa
 
 Voor een organisatie met sterke Microsoft-voorkeur en enterprise-eisen is .NET MAUI de beste keuze, dankzij technologische continuïteit, hergebruik van kennis en consistente gebruikerservaring.
 
+\section{Vergelijking van software-architecturen voor mobiele applicaties}
+
+Softwarearchitectuur vormt de fundamentele structuur van een softwaretoepassing, waarbij de verschillende componenten, hun onderlinge relaties en interacties worden gedefinieerd. In de context van mobiele applicaties is een goede softwarearchitectuur cruciaal om de complexiteit van de app te beheersen, zeker omdat deze applicaties vaak worden ontwikkeld voor diverse apparaten met uiteenlopende specificaties en korte releasetijden \autocite{Dobrean2019}. \\
+
+Een geschikte architectuur helpt ontwikkelaars om het systeem onderhoudbaar, uitbreidbaar en testbaar te houden. Daarnaast maakt het mogelijk om afhankelijkheden tussen componenten te beheersen en bevordert het hergebruik van code. Zoals Dobrean en Dios¸an benadrukken, voorkomt een doordachte architectuur het ontstaan van grote, moeilijk te onderhouden klassen, en helpt het ontwikkelteam sneller nieuwe functies toe te voegen zonder bestaande functionaliteit te breken \autocite{Dobrean2019}.\\
+
+In deze sectie worden diverse architectuurmodellen besproken die relevant zijn voor de ontwikkeling van mobiele applicaties. Per model worden de kernprincipes, voordelen, nadelen en de aansluiting bij projectvereisten toegelicht. Daarnaast wordt ingegaan op de implementatie binnen het Android-platform, gebaseerd op het onderzoek van \textcite{Lou2016}.\\
+
+\subsection{Model-View-Controller (MVC)}
+Het Model-View-Controller (MVC) patroon, geïntroduceerd in Smalltalk-80 en grondslag voor moderne architecturen, verdeelt de applicatie in drie componenten \autocite{Lou2016}:  
+\begin{itemize}
+	\item Model: Beheert de data en businesslogica, al dan niet via externe bronnen.  
+	\item View: De gebruikersinterface die de data visualiseert.  
+	\item Controller: Ontvangt gebruikersinput, past het model aan en communiceert veranderingen aan de view.  
+\end{itemize}
+
+De relatie tussen View en Controller is meestal één-op-één en sterk gekoppeld. De modelcomponent kan aan meerdere View-Controller-paren gekoppeld zijn, wat synchronisatie-uitdagingen oplevert wanneer data verandert \autocite{Lou2016}. MVC is standaard de basisarchitectuur voor native Android-apps, waarbij de scheiding tussen View en Controller in praktijk vaak minder strikt is. In Android wordt de Controller meestal vertegenwoordigd door \texttt{Activity} of \texttt{Fragment}, terwijl de View bestaat uit XML-layoutbestanden en UI-widgets.
+
+\subsection{Model-View-Presenter (MVP)}
+MVP is een evolutie van MVC die een duidelijkere scheiding van verantwoordelijkheden beoogt \autocite{Lou2016}.  
+Belangrijke componenten zijn:  
+\begin{itemize}
+	\item Model: Zoals in MVC, beheert data en businesslogica.  
+	\item View: Toont data en interface, zonder logica.  
+	\item Presenter: Beheert alle UI-logica en interacties tussen Model en View.  
+\end{itemize}
+
+In tegenstelling tot MVC start de interactiestroom bij de View, die gebruikersinput aan de Presenter doorgeeft. De Presenter verwerkt deze input, werkt het Model bij indien nodig, en werkt de View bij. Dit patroon vermindert de koppeling tussen View en Model en maakt unit testing eenvoudiger. Android-applicaties gebruiken vaak de Passive View variant, waarbij de View zo ‘dumb’ mogelijk is en de Presenter vrijwel alle logica afhandelt \autocite{Lou2016}.
+
+\subsection{Model-View-ViewModel (MVVM)}
+MVVM is speciaal ontworpen voor moderne UI-frameworks en stelt de View in staat om door middel van databinding direct gekoppeld te zijn aan de ViewModel \autocite{Lou2016}.  
+\begin{itemize}
+	\item Model: Beheert de data en businesslogica.  
+	\item View: De UI, vaak ontworpen door een designer, die databinding ondersteunt.  
+	\item ViewModel: Houdt de status van de View bij, beheert UI-logica en exposeert data en commando’s via properties.  
+\end{itemize}
+
+Door databinding kan de View automatisch reageren op veranderingen in de ViewModel zonder expliciete code. Dit vereenvoudigt de UI-ontwikkeling en onderhoudbaarheid aanzienlijk. In Android wordt MVVM vaak geïmplementeerd met behulp van de databinding-library, waarbij XML-layouts rechtstreeks gebonden worden aan ViewModel-gegevens en -methoden.
+
+\subsection{Conclusie}
+Hoewel MVC de basis vormt, bieden MVP en MVVM een betere scheiding van verantwoordelijkheden en testbaarheid. MVVM onderscheidt zich door zijn databinding-ondersteuning, die naadloze synchronisatie tussen View en ViewModel mogelijk maakt, hetgeen binnen \texttt{.NET MAUI} en moderne Android-ontwikkeling sterk wordt aanbevolen. De keuze voor een architectuur hangt af van het project, de benodigde flexibiliteit en het framework waarmee gewerkt wordt \autocite{Lou2016}.
+
+
 \section{Moderne Authenticatie en Beveiligingspraktijken}
 
 \subsection{Vergelijking van moderne authenticatiemethoden}
