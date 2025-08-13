@@ -28,7 +28,7 @@ De belangrijkste voordelen van PWA’s zijn hun platformonafhankelijkheid en rel
 
 Een API (Application Programming Interface) is een software-interface die ervoor zorgt dat verschillende applicaties met elkaar kunnen communiceren. Je kunt het vergelijken met een ober in een restaurant: jij geeft een bestelling door, de ober neemt die bestelling mee naar de keuken (de server) en brengt het bereide gerecht terug naar jou. Op deze manier kunnen applicaties via API’s data opvragen en uitwisselen zonder dat zij direct toegang hebben tot elkaars systemen \autocite{Schoemaker2019}.\\  
 
-Bij PWA’s worden API’s bijvoorbeeld gebruikt om informatie op te halen, zoals gebruikersdata, pushnotificaties te versturen of betalingen te verwerken. Omdat iOS nog beperkingen kent op bepaalde API-functionaliteiten, werkt niet alle functionaliteit in een PWA op iPhones even volledig als op Android.\\  
+Bij PWA’s worden API’s bijvoorbeeld gebruikt om informatie op te halen, zoals gebruikersdata, pushnotificaties te versturen of betalingen te verwerken. Pushnotificaties vormen een belangrijk communicatiemiddel tussen applicatie en gebruiker en krijgen daarom later in dit document een aparte bespreking (zie hoofdstuk \ref{sec:pushnotificaties}). Omdat iOS nog beperkingen kent op bepaalde API-functionaliteiten, werkt niet alle functionaliteit in een PWA op iPhones even volledig als op Android.\\  
 
 De markt voor PWA’s groeit snel. In 2023 werd de wereldwijde marktwaarde geschat op 1,46 miljard USD, met een verwachte jaarlijkse groei van 31,1 procent tussen 2024 en 2030 \autocite{Research2024}. Deze groei wordt gedreven door factoren zoals de toenemende internetpenetratie en de vraag naar snelle, toegankelijke mobiele ervaringen. Grote bedrijven zoals Tinder, X (voorheen Twitter) en Forbes maken al gebruik van PWA-technologie. Figuur~\ref{fig:pwa_market} toont de verwachte marktgroei tot 2030.\\  
 
@@ -62,13 +62,14 @@ Flutter en React Native gebruiken eigen rendering-engines of native componenten 
 \subsection{Samenvatting en aanbevelingen}
 Welke mobiele ontwikkelstrategie het beste past, hangt af van de context, de doelstellingen en de technische randvoorwaarden van het project. Uit voorgaand onderzoek blijkt dat native apps bijzonder geschikt zijn voor toepassingen waarbij maximale prestaties en een hoogwaardige gebruikerservaring cruciaal zijn, bijvoorbeeld bij games of apps met intensieve interactie \autocite{Singh2024, Gillis2022}. Deze aanpak zorgt voor optimale integratie met het besturingssysteem en directe hardwaretoegang, maar vergt vaak aparte teams per platform, wat hogere kosten en een langere ontwikkeltijd tot gevolg heeft.\\
 
-Progressive Web Apps bieden een kosteneffectieve, platformonafhankelijke oplossing, met één codebase voor alle moderne browsers. Ze zijn geschikt voor eenvoudige of informatieve apps zonder complexe functies. De functionaliteit is echter beperkter, vooral wat betreft hardwaretoegang en beveiligde API’s. Ook is de ondersteuning voor bepaalde functies, zoals pushnotificaties op iOS, nog beperkt.\\
+Progressive Web Apps bieden een kosteneffectieve, platformonafhankelijke oplossing, met één codebase voor alle moderne browsers \autocite{Hendriksen2020, Research2024}. Ze zijn geschikt voor eenvoudige of informatieve apps zonder complexe functies. De functionaliteit is echter beperkter, vooral wat betreft hardwaretoegang en beveiligde API’s. Ook is de ondersteuning voor bepaalde functies, zoals pushnotificaties op iOS, nog beperkt \autocite{Schoemaker2019}.\\
 
-Cross-platform frameworks als Flutter, React Native en .NET MAUI vormen een aantrekkelijk compromis: met één gedeelde codebase kunnen apps voor meerdere platformen worden ontwikkeld, wat de ontwikkeltijd verkort en het onderhoud vereenvoudigt. Flutter onderscheidt zich door uitstekende UI-prestaties en animaties, terwijl .NET MAUI een goede keuze is voor organisaties die diep in het Microsoft-ecosysteem zitten, mede dankzij de integratie met Visual Studio en Azure.\\
+Cross-platform frameworks als Flutter, React Native en .NET MAUI vormen een aantrekkelijk compromis: met één gedeelde codebase kunnen apps voor meerdere platformen worden ontwikkeld, wat de ontwikkeltijd verkort en het onderhoud vereenvoudigt \autocite{Kuppan2024}. Flutter onderscheidt zich door uitstekende UI-prestaties en animaties, terwijl .NET MAUI een goede keuze is voor organisaties die diep in het Microsoft-ecosysteem zitten, mede dankzij de integratie met Visual Studio en Azure \autocite{Gajjam2025}.\\
 
 Figuur~\ref{fig:vergelijking} toont een overzicht van de voor- en nadelen van deze strategieën. De beste keuze hangt af van het doel van de app, de gewenste gebruikerservaring en de beschikbare middelen. Zo is .NET MAUI vaak de beste optie in enterprise-omgevingen waar stabiliteit, veiligheid en integratie centraal staan, terwijl native ontwikkeling of PWA’s beter kunnen passen bij specifieke projectdoelen en budgetten.\\
 
-Kortom, door zorgvuldig af te wegen tussen prestaties, ontwikkeltijd, functionaliteit en de organisatorische context, kan een projectteam een mobiele ontwikkelstrategie kiezen die zowel aan technische als zakelijke eisen voldoet.
+Kortom, door zorgvuldig af te wegen tussen prestaties, ontwikkeltijd, functionaliteit en de organisatorische context, kan een projectteam een mobiele ontwikkelstrategie kiezen die zowel aan technische als zakelijke eisen voldoet.\\
+
 
 \section{Vergelijking van Cross-Platform Frameworks}
 
@@ -100,7 +101,7 @@ Echter, voor complexe platform-specifieke functies is vaak native code nodig, wa
 \subsection{.NET MAUI}
 .NET MAUI, de opvolger van Xamarin, is Microsofts nieuwste cross-platform framework. Het stelt ontwikkelaars in staat met één codebase apps te bouwen voor iOS, Android, Windows en macOS, wat kosten en onderhoud reduceert \autocite{Sheth2024}.\\
 
-De diepe integratie met het Microsoft-ecosysteem (Visual Studio, Azure, .NET Core) zorgt voor uniforme tooling, samenwerking en toegang tot uitgebreide documentatie \autocite{Sheth2024}. Visual Studio ondersteunt functies als Hot Reload en Live Preview voor een snelle ontwikkelcyclus.\\
+De diepe integratie met het Microsoft-ecosysteem (zoals Visual Studio, Azure en .NET Core) zorgt ervoor dat ontwikkelaars in één vertrouwde werkomgeving kunnen werken, met dezelfde hulpmiddelen en standaarden voor alle onderdelen van het project \autocite{Sheth2024}. Dit betekent dat programmeurs, testers en ontwerpers eenvoudiger kunnen samenwerken, omdat iedereen met dezelfde set software werkt en over dezelfde documentatie beschikt. Visual Studio ondersteunt hierbij handige functies als Hot Reload en Live Preview, waarmee aanpassingen direct zichtbaar zijn zonder de applicatie helemaal opnieuw te hoeven opstarten, wat de ontwikkelcyclus aanzienlijk versnelt.\\
 
 Dankzij een enkele projectstructuur maakt .NET MAUI het makkelijker om apps voor verschillende apparaten te ontwikkelen. De gebruiksvensters en knoppen passen zich automatisch aan het besturingssysteem aan \autocite{Sheth2024}. Hierdoor krijgt de gebruiker overal een gelijkwaardige ervaring, terwijl het uiterlijk van het merk behouden blijft.\\
 
@@ -127,7 +128,7 @@ Voor een organisatie met sterke Microsoft-voorkeur en enterprise-eisen is .NET M
 
 Softwarearchitectuur vormt de fundamentele structuur van een softwaretoepassing, waarbij de verschillende componenten, hun onderlinge relaties en interacties worden gedefinieerd. In de context van mobiele applicaties is een goede softwarearchitectuur cruciaal om de complexiteit van de app te beheersen, zeker omdat deze applicaties vaak worden ontwikkeld voor diverse apparaten met uiteenlopende specificaties en korte releasetijden \autocite{Dobrean2019}. \\
 
-Een geschikte architectuur helpt ontwikkelaars om het systeem onderhoudbaar, uitbreidbaar en testbaar te houden. Daarnaast maakt het mogelijk om afhankelijkheden tussen componenten te beheersen en bevordert het hergebruik van code. Zoals Dobrean en Dios¸an benadrukken, voorkomt een doordachte architectuur het ontstaan van grote, moeilijk te onderhouden klassen, en helpt het ontwikkelteam sneller nieuwe functies toe te voegen zonder bestaande functionaliteit te breken \autocite{Dobrean2019}.\\
+Een geschikte architectuur helpt ontwikkelaars om het systeem onderhoudbaar, uitbreidbaar en testbaar te houden. Daarnaast maakt het mogelijk om afhankelijkheden tussen componenten te beheersen en bevordert het hergebruik van code. Zoals \textcite{Dobrean2019} benadrukt, voorkomt een doordachte architectuur het ontstaan van grote, moeilijk te onderhouden klassen, en helpt het ontwikkelteam sneller nieuwe functies toe te voegen zonder bestaande functionaliteit te breken.\\
 
 In deze sectie worden diverse architectuurmodellen besproken die relevant zijn voor de ontwikkeling van mobiele applicaties. Per model worden de kernprincipes, voordelen, nadelen en de aansluiting bij projectvereisten toegelicht. Daarnaast wordt ingegaan op de implementatie binnen het Android-platform, gebaseerd op het onderzoek van \textcite{Lou2016}.\\
 
@@ -139,7 +140,9 @@ Het Model-View-Controller (MVC) patroon, geïntroduceerd in Smalltalk-80 en gron
 	\item Controller: Ontvangt gebruikersinput, past het model aan en communiceert veranderingen aan de view.  
 \end{itemize}
 
-De relatie tussen View en Controller is meestal één-op-één en sterk gekoppeld. De modelcomponent kan aan meerdere View-Controller-paren gekoppeld zijn, wat synchronisatie-uitdagingen oplevert wanneer data verandert \autocite{Lou2016}. MVC is standaard de basisarchitectuur voor native Android-apps, waarbij de scheiding tussen View en Controller in praktijk vaak minder strikt is. In Android wordt de Controller meestal vertegenwoordigd door \texttt{Activity} of \texttt{Fragment}, terwijl de View bestaat uit XML-layoutbestanden en UI-widgets.
+Zoals \textcite{Lou2016} beschrijven, is de relatie tussen View en Controller meestal één-op-één en sterk gekoppeld. De View is het gedeelte van de app dat de gebruiker ziet en waarmee hij of zij interactie heeft, zoals knoppen, tekstvelden of afbeeldingen. De Controller is het onderdeel dat deze interacties afhandelt en bepaalt wat er gebeurt wanneer een gebruiker iets doet, bijvoorbeeld een knop indrukt. De modelcomponent bevat de onderliggende gegevens en logica van de app en kan aan meerdere View-Controller-paren gekoppeld zijn, wat synchronisatie-uitdagingen oplevert wanneer de gegevens veranderen.\\
+
+MVC (Model-View-Controller) is standaard de basisarchitectuur voor native Android-apps, hoewel de scheiding tussen View en Controller in de praktijk vaak minder strikt is. In Android wordt de Controller meestal vertegenwoordigd door een Activity of Fragment, terwijl de View bestaat uit XML-layoutbestanden (die beschrijven hoe de interface eruitziet, XML staat voor eXtensible Markup Language) en UI-widgets zoals knoppen, tekstvelden en lijsten.\\
 
 \subsection{Model-View-Presenter (MVP)}
 MVP is een evolutie van MVC die een duidelijkere scheiding van verantwoordelijkheden beoogt \autocite{Lou2016}.  
@@ -150,7 +153,12 @@ Belangrijke componenten zijn:
 	\item Presenter: Beheert alle UI-logica en interacties tussen Model en View.  
 \end{itemize}
 
-In tegenstelling tot MVC start de interactiestroom bij de View, die gebruikersinput aan de Presenter doorgeeft. De Presenter verwerkt deze input, werkt het Model bij indien nodig, en werkt de View bij. Dit patroon vermindert de koppeling tussen View en Model en maakt unit testing eenvoudiger. Android-applicaties gebruiken vaak de Passive View variant, waarbij de View zo ‘dumb’ mogelijk is en de Presenter vrijwel alle logica afhandelt \autocite{Lou2016}.
+In tegenstelling tot MVC start de interactiestroom bij de \View, oftewel het scherm dat de gebruiker ziet. De View geeft gebruikersinput, zoals klikken op knoppen of invullen van velden, door aan de Presenter. De Presenter verwerkt deze input, werkt het Model bij indien nodig, en past daarna de View aan \autocite{Lou2016}.\\
+
+Door dit patroon wordt de koppeling tussen View en Model kleiner, waardoor unit testing eenvoudiger wordt. Unit testing betekent dat kleine stukjes code, zoals functies of klassen, afzonderlijk getest worden om te controleren of ze correct werken.\\
+
+Bij de Passive View-variant wordt de View zo “\textit{dumb}” mogelijk gemaakt. Dit betekent dat de View zelf zo min mogelijk logica bevat. Het scherm toont alleen informatie en stuurt input door. Alle beslissingen en verwerking gebeuren in de Presenter, waardoor de code overzichtelijk blijft en eenvoudiger te testen is \textcite{Lou2016}.\\
+
 
 \subsection{Model-View-ViewModel (MVVM)}
 MVVM is speciaal ontworpen voor moderne UI-frameworks en stelt de View in staat om door middel van databinding direct gekoppeld te zijn aan de ViewModel \autocite{Lou2016}.  
@@ -186,7 +194,7 @@ Biometrische authenticatie maakt gebruik van unieke lichaamskenmerken zoals een 
 
 Er zijn ook vernieuwende methoden zoals trajectgebaseerde authenticatie, waarbij het systeem kijkt naar de gebruikelijke reisroutes van een persoon om te controleren of het echt de juiste gebruiker is. Dit werkt minder goed voor mensen die vaak reizen of van locatie wisselen \autocite{Zukarnain2022}.\\
 
-Verder is het belangrijk dat verschillende partijen, zoals mobiele netwerkproviders (operators), tussenpersonen (aggregators) en app-aanbieders (merchants), samenwerken. Zij hebben elk hun eigen beveiligingsmethodes, wat de situatie complex maakt. Het samenbrengen van al deze methoden op één platform kan de veiligheid verhogen en het beheer vereenvoudigen \textcite{Zukarnain2022}.\\
+Zoals \textcite{Zukarnain2022} benadrukt, is het belangrijk dat verschillende partijen, zoals mobiele netwerkproviders (operators), tussenpersonen (aggregators) en app-aanbieders (merchants), samenwerken. Elke partij hanteert eigen beveiligingsmethodes, wat de situatie complex maakt. Het samenbrengen van al deze methoden op één platform kan de veiligheid verhogen en het beheer vereenvoudigen.\\
 
 Kortom, mobiele authenticatie is een ingewikkeld vakgebied waarbij veiligheid, gebruiksgemak en snelheid goed in balans moeten worden gehouden \autocite{Zukarnain2022, Gao2023}.\\
 
@@ -196,6 +204,17 @@ Het veilig opslaan van wachtwoorden is essentieel om te voorkomen dat kwaadwille
 
 Omdat dezelfde wachtwoorden zonder extra bescherming altijd dezelfde hash opleveren, voegt men een unieke, willekeurige waarde toe: de salt. Deze salt zorgt ervoor dat zelfs als twee gebruikers hetzelfde wachtwoord kiezen, de hashes toch verschillend zijn. Dit voorkomt dat aanvallers met vooraf berekende lijsten, zoals rainbow tables, gemakkelijk wachtwoorden kunnen kraken \autocite{Arias2025}.\\
 
+Rainbow tables zijn vooraf berekende tabellen die worden gebruikt om hashes terug te vertalen naar hun oorspronkelijke wachtwoorden. In plaats van voor elke poging opnieuw alle hashingoperaties uit te voeren, kan een aanvaller de tabel raadplegen om snel overeenkomende wachtwoorden te vinden (zie Figuur~\ref{fig:rainbowtable}). Zoals \textcite{ViniciusFulberGarcia2024} uitleggen, bevatten deze tabellen combinaties van oorspronkelijke invoer (plaintext) en de bijbehorende hashcodes, waardoor het eenvoudiger wordt om gestolen hashlijsten te kraken.\\
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.75\textwidth]{rainbowtable.png}
+	\caption{Voorbeeld van een simpele rainbow table \autocite{ViniciusFulberGarcia2024}}
+	\label{fig:rainbowtable}
+\end{figure}
+
+Rainbow table-aanvallen beginnen meestal met het bemachtigen van een lijst van hashes, bijvoorbeeld via een kwetsbare database of phishingtechnieken. Vervolgens vergelijkt de aanvaller de hashes met de rainbow table om matches te vinden en zo de originele wachtwoorden te achterhalen. Salting, waarbij een unieke, willekeurige waarde aan het wachtwoord wordt toegevoegd voordat het gehasht wordt, maakt deze aanvallen aanzienlijk moeilijker \textcite{Arias2025}. Andere maatregelen, zoals het gebruik van sterke, unieke wachtwoorden en moderne hashing-algoritmes zoals bcrypt en PBKDF2, vergroten de weerstand tegen dit type aanval.\\
+
 Voor het hashen van wachtwoorden worden moderne algoritmes zoals bcrypt en PBKDF2 aanbevolen. Deze algoritmes zijn ontworpen om extra rekentijd te vereisen, waardoor brute-force aanvallen—waarbij een aanvaller vele combinaties probeert—veel moeilijker en tijdrovender worden \autocite{Gupta2022}.\\
 
 Verouderde algoritmes zoals MD5 en SHA1 worden afgeraden omdat ze kwetsbaar zijn en te snel werken, wat het makkelijker maakt om hashes te kraken \autocite{ReesCarter2024}.
@@ -203,7 +222,7 @@ Verouderde algoritmes zoals MD5 en SHA1 worden afgeraden omdat ze kwetsbaar zijn
 \subsection{Beveiligde Login-interfaces}
 Een veilige loginpagina is essentieel om gebruikersaccounts te beschermen, maar moet ook makkelijk in gebruik blijven. Een veelvoorkomend veiligheidsrisico is credential stuffing. Dit is een aanval waarbij criminelen lijsten met eerder gestolen gebruikersnamen en wachtwoorden gebruiken om in te loggen op andere websites of diensten. Omdat veel mensen dezelfde inloggegevens hergebruiken, kunnen deze aanvallen grote schade veroorzaken \autocite{Chinnasamy2025}.\\
 
-Bij credential stuffing zetten aanvallers geautomatiseerde programma’s in die massaal proberen in te loggen met deze gestolen gegevens. Ze gebruiken verschillende IP-adressen om detectie te ontwijken en vinden zo snel accounts die ze kunnen misbruiken. Om dit te voorkomen, is het belangrijk om mislukte inlogpogingen te beperken en gebruikers te dwingen sterke, unieke wachtwoorden te kiezen \autocite{Chinnasamy2025}.\\
+Bij credential stuffing zetten aanvallers geautomatiseerde programma’s in die massaal proberen in te loggen met deze gestolen gegevens. Ze gebruiken verschillende IP-adressen, dat wil zeggen unieke nummers die elk apparaat op het internet identificeren, om detectie te ontwijken en vinden zo snel accounts die ze kunnen misbruiken. Om dit te voorkomen, is het belangrijk om mislukte inlogpogingen te beperken en gebruikers te dwingen sterke, unieke wachtwoorden te kiezen \autocite{Chinnasamy2025}.\\
 
 Tweefactorauthenticatie (2FA) biedt een extra beveiligingslaag die het risico op ongeautoriseerde toegang sterk vermindert. Naast het invoeren van een gebruikersnaam en wachtwoord vraagt 2FA om een tweede bevestiging, zoals een eenmalige code (OTP) die bijvoorbeeld via sms of een speciale app op je telefoon wordt ontvangen. Pas als beide stappen correct zijn doorlopen, krijgt de gebruiker toegang tot het account \autocite{Jurisons2024}.\\
 
@@ -211,7 +230,7 @@ Deze tweede factor kan verschillende vormen aannemen: iets wat je weet (zoals ee
 
 2FA is tegenwoordig de beste balans tussen gebruiksgemak en veiligheid. Het is relatief betaalbaar, snel in te zetten, en doordat veel mensen al een mobiele telefoon bezitten, eenvoudig toe te passen. Natuurlijk kost het inloggen met 2FA iets meer tijd en moeite dan alleen een wachtwoord, en soms kan het wachten zijn op een sms-code, maar de extra veiligheid weegt hier ruimschoots tegenop \autocite{Jurisons2024}.\\
 
-Toch is geen enkel systeem perfect: zeer geavanceerde aanvallers kunnen soms ook 2FA omzeilen, bijvoorbeeld door phishing of malware. Daarom blijft het belangrijk om ook andere maatregelen te nemen, zoals het monitoren van verdachte loginpogingen, het gebruik van CAPTCHA’s om bots te blokkeren en het regelmatig updaten van beveiligingsprotocollen \autocite{Chinnasamy2025}.\\
+Toch is geen enkel systeem perfect: zeer geavanceerde aanvallers kunnen soms ook 2FA omzeilen. Phishing is bijvoorbeeld een techniek waarbij iemand misleid wordt om zijn inloggegevens vrijwillig te delen via nepwebsites of valse e-mails, terwijl malware kwaadaardige software is die ongemerkt toegang tot een apparaat kan geven. Daarom blijft het belangrijk om ook andere maatregelen te nemen, zoals het monitoren van verdachte loginpogingen, het gebruik van CAPTCHA’s. CAPTCHA's zijn kleine tests om te controleren of een gebruiker echt een mens is en geen geautomatiseerde bot—om bots te blokkeren, en het regelmatig updaten van beveiligingsprotocollen \autocite{Chinnasamy2025}.\\
 
 Kortom, door sterke wachtwoorden te combineren met limieten op inlogpogingen en tweefactorauthenticatie kunnen organisaties hun loginpagina’s veel veiliger maken, terwijl ze gebruikers niet onnodig hinderen.\\
 
@@ -219,13 +238,14 @@ Kortom, door sterke wachtwoorden te combineren met limieten op inlogpogingen en 
 Moderne beveiliging vereist balans tussen schaalbaarheid, gebruiksgemak en veiligheid. JWT biedt een efficiënte, schaalbare aanpak in moderne architecturen, terwijl robuuste hashing en salting wachtwoordbeveiliging versterken. De gebruikersinterface moet beveiliging en gebruiksgemak combineren, bijvoorbeeld via 2FA en inlogpogingenlimiet. Deze overwegingen leiden tot een toekomstbestendige beveiligingsstrategie \autocite{Gao2023, Gupta2022, Arias2025, ReesCarter2024, Chinnasamy2025, Jurisons2024}.
 
 \section{Beveiliging en Beheer van Pushnotificaties}
+\label{sec:pushnotificaties}
 
 \subsection{Onderzoek naar Technische Implementatieopties}
 Volgens \textcite{Wohllebe2021} zijn pushnotificaties een krachtig middel om gebruikers snel te informeren, bijvoorbeeld over de status van zonnepanelen of slimme meters. Deze meldingen verschijnen direct op het scherm van je smartphone en zorgen ervoor dat je meteen op de hoogte bent van belangrijke updates.\\
 
 Ontwikkelaars gebruiken hiervoor vaak speciale diensten die per platform verschillen. Voor Apple-toestellen is dat de Apple Push Notification Service (APNs) en voor Android-apparaten Firebase Cloud Messaging (FCM). Deze diensten zijn betrouwbaar en goed geïntegreerd in het systeem, waardoor ze vaak de beste keuze zijn voor toepassingen waarbij betrouwbaarheid belangrijk is \autocite{Wohllebe2021}.\\
 
-Er bestaan ook diensten die voor meerdere platforms tegelijk werken, zoals OneSignal. Deze bieden extra functies en maken het beheer eenvoudiger, maar zorgen ook voor extra complexiteit en afhankelijkheid van een externe partij. Sommige bedrijven kiezen ervoor om zelf een systeem te bouwen, bijvoorbeeld met websockets of MQTT, maar dat is ingewikkelder en minder goed schaalbaar \autocite{Wohllebe2021}.\\
+Er bestaan ook diensten die voor meerdere platforms tegelijk werken, zoals OneSignal. Deze bieden extra functies en maken het beheer eenvoudiger, maar zorgen ook voor extra complexiteit en afhankelijkheid van een externe partij. Sommige bedrijven kiezen ervoor om zelf een systeem te bouwen. Hierbij worden bijvoorbeeld WebSockets gebruikt, waarmee apparaten en servers continu met elkaar verbonden blijven zodat berichten direct kunnen worden uitgewisseld, of MQTT (Message Queuing Telemetry Transport), een protocol dat efficiënt kleine berichten laat versturen tussen apparaten, zoals sensoren of apps. Zelf zo'n systeem opzetten is echter ingewikkelder en minder goed schaalbaar \textcite{Wohllebe2021}.\\
 
 Hoe een pushnotificatie eruitziet, beïnvloedt de kans dat mensen erop reageren. Onderzoek laat zien dat een duidelijke titel in de melding het aantal gebruikers dat de app opent verhoogt. Extra elementen zoals plaatjes of knoppen blijken daarentegen niet significant bij te dragen aan meer interactie \autocite{Wohllebe2021}.\\
 
@@ -234,7 +254,7 @@ Pushnotificaties werken als een prikkel die de gebruiker aanzet tot actie, bijvo
 Het is wel belangrijk dat pushnotificaties niet te vaak worden verstuurd. Te veel meldingen kunnen als storend worden ervaren en leiden tot frustratie, waardoor gebruikers de meldingen kunnen uitschakelen. Daarom is het essentieel dat de berichten altijd nuttig en relevant zijn, zodat ze als waardevol worden gezien en niet als hinderlijk \autocite{Wohllebe2021}.\\
 
 \subsection{Beheer en Verificatie van Tokens}
-Om pushberichten op de juiste apparaten te bezorgen, wordt bij installatie van een app een uniek identificatienummer toegekend aan elk toestel, een zogenaamd push-token \textcite{pushwoosh2025}. Dit token is als het ware het adres waar meldingen naartoe worden gestuurd.\\
+Om pushberichten op de juiste apparaten te bezorgen, wordt bij installatie van een app een uniek identificatienummer toegekend aan elk toestel, een zogenaamd push-token \autocite{pushwoosh2025}. Dit token is als het ware het adres waar meldingen naartoe worden gestuurd.\\
 
 Toch kan zo’n token veranderen, bijvoorbeeld wanneer iemand de app verwijdert en opnieuw installeert, of bij een update van het besturingssysteem. Daarom is het belangrijk om regelmatig te controleren of het token nog klopt. Sommige apps doen dit automatisch bij het opstarten, zodat ze altijd met het juiste token werken. Dat is handig, maar zorgt ook voor iets meer internetverkeer.\\
 
